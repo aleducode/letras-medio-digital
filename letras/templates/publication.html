@@ -1,0 +1,229 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div id="content">
+    <!-- BEGIN #portus-read-later -->
+    <!-- BEGIN .wrapper -->
+    <div class="wrapper">
+        <!-- BEGIN .portus-main-content-panel -->
+        <div class="paragraph-row portus-main-content-panel">
+            <div class="column12">
+                <div class="portus-main-content-s-block">
+                    <!-- BEGIN .portus-main-content -->
+                    <div class="portus-main-content">
+                        <div class="theiaStickySidebar">
+                            <div class="portus-main-article-block">
+                                <h2>{{notice.title}}</h2>
+
+                                <p class="portus-main-article-intro">{{notice.lead}}</p>
+
+                                <span class="portus-main-article-meta">
+                                    <a class="item-meta-i"><i class="fa fa-star"></i>{{notice.section}}</a>
+                                    <a class="item-meta-i"><i class="po po-clock"></i>{{notice.created|date:"d M"}}</a>
+
+                                </span>
+
+                                <div class="wp-caption aligncenter">
+                                    <a href="" class="lightbox-photo" title="{{picture}}">
+                                        <img src="{{picture.route.url}}" width="680" height="357" alt="" /></a>
+                                    <p class="wp-caption-text">{{picture.footer}}</p>
+                                </div>
+
+                                <p>{{notice.text|linebreaks}}</p>
+
+
+                            </div>
+                            <!-- BEGIN .portus-content-block -->
+
+
+                            <!-- BEGIN .portus-content-block -->
+                            <div class="widget">
+
+                                <h3>Compartir</h3>
+                                <div class="social-widget">
+                                    <div class="social-squares">
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u=http://letrasmedio.co/publication/{{notice.pk}}"
+                                            target="_blank" class="hover-color-facebook"><i
+                                                class="fa fa-facebook"></i><span>--</span></a>
+
+                                        <a href="#" target="_blank" class="hover-color-twitter"><i
+                                                class="fa fa-twitter"></i><span>--</span></a>
+
+                                        <a href="#" target="_blank" class="hover-color-google-plus"><i
+                                                class="fa fa-google-plus"></i><span>--</span></a>
+
+                                        <a href="#" target="_blank" class="hover-color-linkedin"><i
+                                                class="fa fa-linkedin"></i><span>--</span></a>
+
+                                        <a href="#" target="_blank" class="hover-color-pinterest"><i
+                                                class="fa fa-pinterest-p"></i><span>--</span></a>
+                                    </div>
+                                </div>
+
+                                <!-- END .widget -->
+                            </div>
+
+                        </div>
+                        <!-- END .portus-main-content -->
+                    </div>
+
+                    <aside class="sidebar portus-sidebar-small">
+                        <div class="theiaStickySidebar">
+
+                            <!-- BEGIN .widget -->
+                            <div class="widget">
+
+                                <h3>Destacados</h3>
+                                <div class="w-article-list">
+                                    {% for notice in top2_notices%}
+                                    <div class="item">
+                                        <div class="item-header">
+
+                                            {%for image in top2_images%}
+                                            {%if image.notice.pk == notice.pk%}
+                                            <a href="{% url 'publication' notice.pk%}"><img
+                                                    src="{{image.route.url}}" alt="" /></a>
+                                            {%endif%}
+                                            {%endfor%}
+                                        </div>
+                                        <div class="item-content">
+
+                                            <h4><a href="{% url 'publication' notice.pk %}">{{notice.title}}</a></h4>
+                                            <div class="item-categories">
+                                                <a href="category.html" data-ot-css="color: #f37326;"><i
+                                                        class="fa fa-calendar"></i>
+                                                    {{notice.created|date:"d M"}}</a>
+                                                    <a href="category.html" data-ot-css="color: #f37326;"><i
+                                                        class="fa fa-star"></i>
+                                                    {{notice.section}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {%endfor%}
+
+
+
+                                </div>
+
+                                <!-- END .widget -->
+                            </div>
+
+                            <!-- BEGIN .widget -->
+
+
+                            <!-- BEGIN .widget -->
+
+
+                        </div>
+                    </aside>
+
+                    <aside class="sidebar portus-sidebar-large">
+                        <div class="theiaStickySidebar">
+
+                            <!-- BEGIN .widget -->
+                            <div class="widget">
+
+                                <h3>Más de {{notice.section}}</h3>
+
+                                <div class="w-review-articles">
+                                    {% for notice in section_notices%}
+                                    <div class="item item-large">
+                                        <div class="item-header item-header-hover">
+                                            <div class="item-header-hover-buttons">
+                                                <span data-hover-text-me="Leer"><a
+                                                        href="{% url 'publication' notice.pk%}"
+                                                        class="fa fa-search"></a></span>
+                                               
+                                            </div>
+                                            {%for image in section_images%}
+                                            {%if image.notice.pk == notice.pk%}
+                                            <a href="{% url 'publication' notice.pk%}"><img src="{{image.route.url}}"
+                                                    alt="{{image}}" /></a>
+                                            {%endif%}
+                                            {%endfor%}
+                                        </div>
+                                        <div class="item-content">
+                                            <h4><a href="{% url 'publication' notice.pk%}">{{notice.title}}</a>
+                                                <a href="{% url 'publication' notice.pk%}" class="post-title-comment">
+                                                    <a href="{% url 'publication' notice.pk%}"
+                                                        data-ot-css="color: #f37326;">
+                                                        <i class="fa fa-calendar"></i> {{notice.created|date:"d M"}}</a>
+                                            </h4>
+
+                                        </div>
+                                    </div>
+                                    {%endfor%}
+
+
+                                </div>
+                                <a href="blog.html" class="widget-view-more">Ver más Noticias</a>
+
+                                <!-- END .widget -->
+                            </div>
+
+                            <!-- BEGIN .widget -->
+                            <div class="widget">
+
+                                <div class="do-space">
+                                    <a href="#" target="_blank"><img src="{% static "base/images/pob-3.jpg" %}"
+                                            alt="" /></a>
+                                </div>
+
+                                <!-- END .widget -->
+                            </div>
+
+                            <!-- BEGIN .widget -->
+                            <div class="widget">
+
+                                <h3>Suscríbete a Letras</h3>
+                                <div class="widget-subscribe">
+                                    <div>
+                                        <p></p>
+                                    </div>
+                                    <div class="alert-message alert-green">
+                                        <strong>Mantente actualizado </strong>
+                                    </div>
+
+
+                                    <form action="#">
+                                        <label class="label-input">
+                                            <span>Nombre</span>
+                                            <input type="text" value="" />
+                                        </label>
+                                        <label class="label-input">
+                                            <span>Correo</span>
+                                            <input type="email" value="" />
+                                        </label>
+                                        <input type="submit" class="button" value="Enviar" />
+                                    </form>
+                                </div>
+                                <!-- END .widget -->
+                            </div>
+
+                            <!-- BEGIN .widget -->
+
+
+                            <!-- BEGIN .widget -->
+
+
+                            <!-- BEGIN .widget -->
+
+
+                            <!-- END .widget -->
+                        </div>
+
+                </div>
+                </aside>
+
+            </div>
+        </div>
+        <!-- ENd .portus-main-content-panel -->
+    </div>
+
+    <!-- END .wrapper -->
+</div>
+
+<!-- BEGIN #content -->
+</div>
+{%endblock%}

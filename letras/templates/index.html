@@ -2,4 +2,174 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
 {% block content %}
+<div id="content">
+    <!-- BEGIN #portus-read-later -->
+    <!-- BEGIN .wrapper -->
+    <div class="wrapper">
+        <!-- BEGIN .portus-main-content-panel -->
+        <div class="paragraph-row portus-main-content-panel">
+            <div class="column12">
+                <div class="portus-article-slider-big owl-carousel">
+                    <div class="item">
+                            
+                        <a href="{% url 'publication' top1_notice.pk %}" class="item-photo">
+                            <img src="{{top1_image.route.url}}"
+                            height="390" width="600" />
+                            <span class="item-content">
+                                <strong class="item-article-category" data-ot-css="color: #f3d826;"></strong>
+                                <strong class="item-article-title">{{top1_notice.title}}</strong>
+                                <span class="item-article-text">{{top1_notice.lead}}</span>
+                                <span class="item-meta">
+                                    <!-- <span><i class="po po-head"></i>{{top1_notice.user}}</span> -->
+                                    <span><i class="fa fa-calendar-o"></i>{{top1_notice.created|date:"d M"}}</span>
+                                    <span><i class="fa fa-star"></i>{{top1_notice.section}}</span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="item item-small">
+                        {%for notice in top2_notices|slice:":4" %}
+                        
+                        <a href="{% url 'publication' notice.pk %}" class="item-photo">
+                            {%for image in top2_images%}
+                          
+                            {%if image.notice.pk == notice.pk%}
+                            <img src="{{image.route.url}}" alt=""
+                            height="195" width="300"  />
+                            {%endif%}
+                            {%endfor%}
+                            <span class="item-content">
+                                <strong class="item-article-title">{{notice.title}}</strong>
+                                <span class="item-meta">
+                                   
+                                    <span><i class="po po-clock"></i>{{notice.created|date:"d M"}}</span>
+                                </span>
+                            </span>
+                        </a>
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+            <!-- ENd .portus-main-content-panel -->
+        </div>
+        <!-- BEGIN .portus-main-content-panel -->
+        <!-- BEGIN .portus-main-content-panel -->
+        <div class="paragraph-row portus-main-content-panel">
+            <div class="column12">
+                <div class="portus-main-content-s-block">
+                    <!-- BEGIN .portus-main-content -->
+                    <div class="portus-main-content portus-main-content-s-4">
+                        <div class="theiaStickySidebar">
+                            <!-- BEGIN .portus-content-block -->
+                            <div class="portus-content-block">
+                                <div class="portus-content-title">
+                                    <h2>Últimas Publicaciones</h2>
+                                </div>
+                                <div class="article-grid-default">
+                                    <div class="article-grid-layout-3">
+                                        {%for notice in notices|slice:":9" %}
+                                        <div class="item">
+                                            <div class="item-header item-header-hover">
+                                                <div class="item-header-hover-buttons">
+                                                    <span data-hover-text-me="Leer más"><a
+                                                            href="{% url 'publication' notice.pk %}"
+                                                            class="fa fa-eye"></a></span>
+                                                </div>
+                                                {%for image in images%}
+                                                <a href="{% url 'publication' notice.pk %}">{%if image.notice.pk == notice.pk%}
+                                                    <img src="{{image.route.url}}"
+                                                    height="146" width="260" alt="" />
+                                                    {%endif%}</a>
+                                                {%endfor%}
+                                            </div>
+                                            <div class="item-content">
+                                                <h3><a href="{% url 'publication' notice.pk %}">{{notice.title}}</a>
+                                                </h3>
+                                                <div class="item-meta">
+                                                    
+                                                    <span class="item-meta-i">
+                                                        <i class="fa fa-calendar-o"></i>{{notice.created|date:"d M"}}</span>
+                                                        <span class="item-meta-i">
+                                                                <i class="fa fa-star"></i>{{notice.section}}</span>
+                                                </div>
+                                                <p>{{notice.lead}}</p>
+                                                <div class="item-helper-a">
+                                                    <a href="{% url 'publication' notice.pk %}"
+                                                        class="button-alt button-alt-frame"><i class="fa fa-eye"></i>Ver
+                                                        mas</a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {%endfor%}
+
+
+
+                                    </div>
+
+
+
+
+
+
+                                </div>
+                                <!-- BEGIN .portus-content-block -->
+                            </div>
+
+                        </div>
+                        <!-- END .portus-main-content -->
+                    </div>
+                    <aside class="sidebar portus-sidebar-large">
+
+                        <!-- BEGIN .widget -->
+                        <div class="widget">
+
+                            <h3>Suscríbete a Letras</h3>
+                            <div class="widget-subscribe">
+                                <div>
+                                    <p></p>
+                                </div>
+                                <div class="alert-message alert-green">
+                                    <strong>Mantente actualizado </strong>
+                                </div>
+
+
+                                <form action="#">
+                                    <label class="label-input">
+                                        <span>Nombre</span>
+                                        <input type="text" value="" />
+                                    </label>
+                                    <label class="label-input">
+                                        <span>Correo</span>
+                                        <input type="email" value="" />
+                                    </label>
+                                    <input type="submit" class="button" value="Enviar" />
+                                </form>
+                            </div>
+
+                            <!-- END .widget -->
+                        </div>
+
+                        <!-- BEGIN .widget -->
+
+
+
+                    </aside>
+                </div>
+            </div>
+            <!-- ENd .portus-main-content-panel -->
+        </div>
+
+        <!-- BEGIN .portus-main-content-panel -->
+
+
+        <!-- BEGIN .portus-main-content-panel -->
+
+
+
+        <!-- END .wrapper -->
+    </div>
+
+    <!-- BEGIN #content -->
+</div>
 {% endblock%}

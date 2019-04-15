@@ -19,11 +19,11 @@ PRIORIDAD_CHOICES=(
 
 def user_directory_path(instance,filename):
     """Route to storage user picture"""
-    return 'user{0}/{1}'.format(instance.usuario.id,filename)
+    return 'user{0}/{1}'.format(instance.user.id,filename)
 
-def user_directory_path(instance,filename):
+def notices_directory_path(instance,filename):
     """Route to storage notice(s) picture"""
-    return 'notice{0}/{1}'.format(instance.noticia.id,filename)
+    return 'notice{0}/{1}'.format(instance.notice.id,filename)
 
 class Profile(models.Model):
     """Profile model that extens the db with other informations"""
@@ -53,6 +53,9 @@ class Section(models.Model):
         'Activa',
         default=1,
     )
+    def __str__(self):
+        """return username"""
+        return self.name
 
 class Notice(models.Model):
     """Notice model"""
@@ -69,12 +72,12 @@ class Notice(models.Model):
 
     def __str__(self):
         """return notice's title"""
-        return '{} by @{}'.format(self.title, self.user.first_name)
+        return '{}. By: {} {}'.format(self.title, self.user.first_name, self.user.last_name)
 	
 class Picture(models.Model):
     """Picture model"""
     notice = models.ForeignKey(Notice,models.CASCADE)
-    route = models.FileField(upload_to=user_directory_path)
+    route = models.FileField(upload_to=notices_directory_path)
     name_picture = models.CharField('Texto Noticia',max_length=500,null=True,blank=True)
     is_principal=models.BooleanField(
         'Principal',
@@ -84,3 +87,12 @@ class Picture(models.Model):
     def __str__(self):
         """returrn picture name"""
         return 'Notice:{}'.format(self.notice)
+
+class Suscriptors(models.Model):
+    """Class for suscriptors storage"""
+    name = models.CharField('Nombre Sucriptior',max_length=255)
+    email = models.CharField('Correo',max_length=255)
+    is_active=models.BooleanField(
+        'Activo',
+        default=1,
+    )
