@@ -3,17 +3,29 @@
 #Django
 
 from django.shortcuts import render, redirect
-from django.views.generic import DetailView, FormView, UpdateView,TemplateView
+from django.views.generic import (  DetailView,FormView,
+                                    UpdateView,TemplateView,
+                                    ListView, CreateView
+                                )
 from django.urls import reverse_lazy
 from django.db.models import Q
+from django.http import HttpResponse
 #Models
 from letras.models import *
+from letras.forms import *
 from django.template.loader import get_template
+#utils
+from sweetify.views import SweetifySuccessMixin
+import sweetify
 
 
-class IndexView(TemplateView):
+
+class IndexView(SweetifySuccessMixin,FormView):
     """Index view letras"""
     template_name = 'index.html'
+    form_class = SuscriptorsForm
+    success_message = 'TestModel successfully updated!'
+    success_url = reverse_lazy('index')
     
     def get_context_data(self,**kwargs):
         """add notices post to context"""
@@ -35,6 +47,11 @@ class IndexView(TemplateView):
         context['images'] = Picture.objects.filter(
             notice__in=context['notices'], is_principal=True)
         return context
+
+    def form_valid(self,form):
+        form.save()
+        return super().form_valid(form)
+
 
 class PublicationView(DetailView):
     """Publication viewer"""
@@ -58,7 +75,42 @@ class PublicationView(DetailView):
             notice__in=context['top2_notices'], is_principal=True)
         #section
         context['section_notices'] = Notice.objects.filter(
-            priority=2, section=notice.section).exclude(pk=notice.pk).order_by('-created')
+            section=notice.section).exclude(pk=notice.pk).order_by('-created')
         context['section_images'] = Picture.objects.filter(
             notice__in=context['section_notices'], is_principal=True)
         return context
+
+class SectionView(TemplateView):
+    """Section Generic viewer"""
+    template_name = 'section.html'
+    #TODO: paginator
+    def get_context_data(self,**kwargs):
+        """add picture and other notices to context"""
+        #normal context without override it
+        context=super().get_context_data(**kwargs)
+        #section information 
+        context['notices']= Notice.objects.filter(
+            section=self.kwargs['section']).order_by('-created')
+        context['images'] = Picture.objects.filter(
+            notice__in=context['notices'], is_principal=True)
+        #recent publications
+        context['top_notices'] = Notice.objects.filter(
+            Q(priority=2)|Q(priority=1)).order_by('-created')
+        context['top_images'] = Picture.objects.filter(
+            notice__in=context['top_notices'], is_principal=True)
+        return context
+
+def create_suscriptor(request):
+    """ajax receptor to create sucriptor"""
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        user_subscribed = Suscriptors.objects.filter(email=email)
+        if not user_subscribed:
+            data={
+                'name':request.POST.get('name'),
+                'email':email,
+            }
+            Suscriptors.objects.create(**data)
+            return HttpResponse(1)
+        else:
+            return HttpResponse(0)

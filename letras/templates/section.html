@@ -1,0 +1,174 @@
+
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div id="content">
+
+	<div class="wrapper">
+
+		<!-- BEGIN .portus-main-content-panel -->
+		<div class="paragraph-row portus-main-content-panel">
+            <div class="column12">
+                <div class="portus-main-content-s-block">
+
+                    <!-- BEGIN .portus-main-content -->
+                    <div class="portus-main-content portus-main-content-s-2">
+                        <div class="theiaStickySidebar">
+                            
+                            <!-- BEGIN .portus-content-block -->
+                            <div class="portus-content-block">
+                                <div class="portus-content-title">
+                                    <h2>{{notices.0.section}}</h2>
+
+                                </div>
+                                <div class="article-blog-default">
+                                    {% if notices %}
+                                    {% for notice in notices %}
+                                      
+                                
+                                    <div class="item">
+                                        <div class="item-header item-header-hover">
+                                            <div class="item-header-hover-buttons">
+                                                <span data-hover-text-me="Leer mas"><a href="{% url 'publication' notice.pk %}" class="fa fa-search"></a></span>
+ 
+                                            </div>
+                                            <a href="{% url 'publication' notice.pk %}">
+                                                {% if images %}
+                                                {% for image in images%}
+                                                
+                                                {% if image.notice.pk == notice.pk %}
+                                                <img src="{{image.route.url}}" alt="{{image.notice}}" /></a>
+                                                {% endif %}
+                                                
+                                                {% endfor %}
+                                                {% endif %}
+                                               
+                                        </div>
+                                        <div class="item-content">
+                                            <h3><a href="{% url 'publication' notice.pk %}">{{notice.title}}</a></h3>
+                                            <div class="item-meta">
+                                                <a href="blog.html" class="item-meta-i"><i class="fa fa-star"></i>{{notice.section}}</a>
+                                                <span class="item-meta-i"><i class="po po-clock"></i>{{notice.created|date:"d M"}}</span>
+            
+                                            </div>
+                                            <p>{{notice.lead}}</p>
+                                            <div class="item-helper-a">
+
+                                                <a href="{% url 'publication' notice.pk %}" class="button-alt"><i class="fa fa-search"></i>Leer más</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
+                                 
+                                    <div class="portus-pagination">
+                                        <a class="prev page-numbers" href="#"><i class="fa fa-chevron-left"></i>Previous</a>
+                                        <a class="page-numbers" href="#">1</a>
+                                        <span class="page-numbers current">2</span>
+                                        <a class="page-numbers" href="#">3</a>
+                                        <a class="page-numbers" href="#">4</a>
+                                        <a class="page-numbers" href="#">5</a>
+                                        <a class="next page-numbers" href="#">Next<i class="fa fa-chevron-right"></i></a>
+                                    </div>
+
+                                </div>
+                            <!-- BEGIN .portus-content-block -->
+                            </div>
+
+                        </div>
+                    <!-- END .portus-main-content -->
+                    </div>
+
+                    <aside class="sidebar portus-sidebar-large">
+                        <div class="theiaStickySidebar">
+                           
+                            <!-- BEGIN .widget -->
+                            <div class="widget">
+                                
+                                <h3>Lo más reciente</h3>
+                                <div class="w-review-articles">
+                                        {% if top_notices %}
+                                        {% for notice in top_notices|slice:":3" %}
+                                    <div class="item">
+                                        <div class="item-header">
+
+                                             <a href="{% url 'publication' notice.pk %}">
+                                                    {% if top_images %}
+                                                    {% for image in top_images%}
+                                                    {% if image.notice.pk == notice.pk %}
+                                                    <img src="{{image.route.url}}" alt="{{image.notice}}" /></a>
+                                                    {% endif %}
+                                                    
+                                                    {% endfor %}
+                                                    {% endif %}
+                                        </div>
+                                        <div class="item-content">
+                                            <h4><a href="{% url 'publication' notice.pk %}">{{notice.title}}</a></h4>
+                                            <div class="item-meta">
+                                                <div class="item-meta-inner">
+                                                        <a href="{% url 'section' notice.section.pk %}" class="item-meta-i"><i class="fa fa-star"></i>{{notice.section}}</a>
+                                                        <span class="item-meta-i"><i class="po po-clock"></i>{{notice.created|date:"d M"}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endfor %}
+                                                    {% endif %}
+            
+                                </div>
+                                
+            
+                            <!-- END .widget -->
+                            </div>
+                            {% include "base/sidebar.html" %}
+                    
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        <!-- ENd .portus-main-content-panel -->
+        </div>
+        
+
+		<!-- END .wrapper -->
+	</div>
+
+	<!-- BEGIN #content -->
+</div>
+{% endblock content %}
+{% block scripts %}
+<script>
+/* ajax para hacer submit al fomulario */
+        $(document).on('submit', '#form_post', function (e) {
+          e.preventDefault();
+           $.ajax({
+            type: 'POST',
+            url: '/ajax_suscriptor/',
+            data: {
+              name: document.getElementById('name').value,
+              email: document.getElementById('email').value,
+              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function (response) {
+              if (response == 0) {
+                swal({
+                  title: 'Error de suscripción',
+                  text: 'Este Correo electrónico ya se encuentra registrado',
+                  icon: 'error',
+                  button: 'OK'
+                });
+              }
+              else {
+                swal({
+                  title: "Suscripción exitosa",
+                  text: "Bienvenid@",
+                  icon: "success",
+                  button: "Listo",
+                });
+              }
+            }
+          });
+        });
+    </script>
+{% endblock%}

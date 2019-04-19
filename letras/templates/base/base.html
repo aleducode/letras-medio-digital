@@ -78,7 +78,7 @@
                     </div>
 
                     <ul class="load-responsive" rel="Header Menu">
-                        <li><a href="index.html"><i class="fa fa-home"></i></a></li>
+                        <li><a href="{% url 'index' %}"><i class="fa fa-home"></i></a></li>
                         <!-- <<li><a href="blog.html">Blog page</a></li>
 							<li><a href="read-later.html">Read later feature</a></li>-->
                         <li><a href="">Quienes Somos</a></li>
@@ -148,10 +148,10 @@
                         </div>
 
                         <ul class="load-responsive" rel="Main Menu">
-                           
-                            <li><a href="">Colombia</a></li>
-                            <li><a href="">Antioquia</a></li>
-                            <li><a href="">Medellín</a></li>
+                        
+                            <li><a href="{% url 'section' 1 %}">Colombia</a></li>
+                            <li><a href="{% url 'section' 2 %}">Antioquia</a></li>
+                            <li><a href="{% url 'section' 3 %}">Medellín</a></li>
                             <li><a href="">Deportes</a></li>
                             <li><a href="">Cultura</a></li>
                             <li><a href="">Entretenimiento</a></li>
@@ -242,7 +242,7 @@
             <div id="footer-info">
                 <div class="wrapper">
                     <ul align="center">
-                        <p>&copy; <strong>Desarrollado e implementado por LetrasMedio </p>
+                        <p>&copy; <strong>Desarrollado e implementado por <a href="https://github.com/alejandroduquec">Aduquec</a> </p>
                     </ul>
 
                 </div>
@@ -254,6 +254,8 @@
         <!-- END .boxed -->
     </div>
     
+
+
     <!-- Scripts -->
     <script type="text/javascript" src="{% static "base/jscript/jquery-latest.min.js"%}"></script>
     <script type="text/javascript" src="{% static "base/jscript/bootstrap.min.js" %}"></script>
@@ -265,6 +267,9 @@
     <script type="text/javascript" src="{% static "base/jscript/dat-menu.min.js" %}"></script>
     <script type="text/javascript" src="{% static "base/jscript/theme-scripts.min.js" %}"></script>
     <script type="text/javascript" src="{% static "base/jscript/ot-lightbox.min.js" %}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- <script type="text/javascript" src="{% static "base/jscript/sweetalert.min.js" %}"></script> -->
+   
     <script>
         // Animation time of revieling and hiding menu (defaut = 400)
         var _datMenuAnim = 400;
@@ -366,9 +371,12 @@
 				loop: false
 			});
         </script>
+        {% load sweetify %}
+        {% sweetify %}
+        
         {% block scripts %}
         {% endblock%}
-
+        
 		<!-- END body -->
 	</body>
 	<!-- END html -->

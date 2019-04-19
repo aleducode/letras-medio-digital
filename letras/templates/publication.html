@@ -157,60 +157,13 @@
 
 
                                 </div>
-                                <a href="blog.html" class="widget-view-more">Ver más Noticias</a>
+                                <a href="{% url 'section' notice.section.pk %}" class="widget-view-more">Ver más Noticias</a>
 
                                 <!-- END .widget -->
                             </div>
 
                             <!-- BEGIN .widget -->
-                            <div class="widget">
-
-                                <div class="do-space">
-                                    <a href="#" target="_blank"><img src="{% static "base/images/pob-3.jpg" %}"
-                                            alt="" /></a>
-                                </div>
-
-                                <!-- END .widget -->
-                            </div>
-
-                            <!-- BEGIN .widget -->
-                            <div class="widget">
-
-                                <h3>Suscríbete a Letras</h3>
-                                <div class="widget-subscribe">
-                                    <div>
-                                        <p></p>
-                                    </div>
-                                    <div class="alert-message alert-green">
-                                        <strong>Mantente actualizado </strong>
-                                    </div>
-
-
-                                    <form action="#">
-                                        <label class="label-input">
-                                            <span>Nombre</span>
-                                            <input type="text" value="" />
-                                        </label>
-                                        <label class="label-input">
-                                            <span>Correo</span>
-                                            <input type="email" value="" />
-                                        </label>
-                                        <input type="submit" class="button" value="Enviar" />
-                                    </form>
-                                </div>
-                                <!-- END .widget -->
-                            </div>
-
-                            <!-- BEGIN .widget -->
-
-
-                            <!-- BEGIN .widget -->
-
-
-                            <!-- BEGIN .widget -->
-
-
-                            <!-- END .widget -->
+                            {% include "base/sidebar.html" %}
                         </div>
 
                 </div>

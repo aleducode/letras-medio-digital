@@ -57,6 +57,13 @@ class Section(models.Model):
         """return username"""
         return self.name
 
+def move_top2():
+        now_top2=Notice.objects.filter(priority=2).order_by('-created')
+        if len(now_top2) == 4:
+            notice = now_top2[3]
+            notice.priority = 3
+            notice.save()
+        return 
 class Notice(models.Model):
     """Notice model"""
     title = models.TextField('Titulo Noticia')
@@ -69,24 +76,55 @@ class Notice(models.Model):
 
     created=models.DateTimeField(auto_now_add=True)
     modified=models.DateTimeField(auto_now=True)
-
+    class Meta:
+        """Meta option."""
+        get_latest_by = 'created'
+        ordering = ['-created', '-modified']
+    
     def __str__(self):
         """return notice's title"""
-        return '{}. By: {} {}'.format(self.title, self.user.first_name, self.user.last_name)
-	
+        return '{}. By: {} {} - prioridad: {}'.format(self.title, self.user.first_name, self.user.last_name,self.priority)
+    
+    
+
+    def save(self, *args, **kwargs):
+        if self.priority == 1:
+            #move top1 existent to top2
+            old_top1 = Notice.objects.filter(priority=1)
+            if old_top1:
+                #free space in top2 to move old top1
+                move_top2()
+                old_top1.update(priority=2)
+                
+            
+        if self.priority == 2:
+            #get 4 existent top2 notices and send the oldest to normal priority
+            now_top2 = Notice.objects.filter(priority=2).order_by('-created')
+            move_top2()
+        super(Notice, self).save(*args, **kwargs)
+
 class Picture(models.Model):
     """Picture model"""
     notice = models.ForeignKey(Notice,models.CASCADE)
     route = models.FileField(upload_to=notices_directory_path)
-    name_picture = models.CharField('Texto Noticia',max_length=500,null=True,blank=True)
     is_principal=models.BooleanField(
         'Principal',
         default=1,
     )
-    footer = models.CharField('Pie de foto',max_length=500,null=True,blank=True)
+    footer = models.CharField('Pie de foto',
+        max_length=500,
+        null=True,
+        blank=True,
+        default='por: Letras Medio')
     def __str__(self):
         """returrn picture name"""
         return 'Notice:{}'.format(self.notice)
+    class Meta:
+        """Meta option."""
+        get_latest_by = 'notice__created'
+        ordering = ['-notice__created', '-notice__modified']
+    
+
 
 class Suscriptors(models.Model):
     """Class for suscriptors storage"""
@@ -96,3 +134,6 @@ class Suscriptors(models.Model):
         'Activo',
         default=1,
     )
+    def __str__(self):
+        """return suscriptor"""
+        return 'Suscriptior:{}'.format(self.name)
