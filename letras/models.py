@@ -125,7 +125,6 @@ class Picture(models.Model):
         ordering = ['-notice__created', '-notice__modified']
     
 
-
 class Suscriptors(models.Model):
     """Class for suscriptors storage"""
     name = models.CharField('Nombre Sucriptior',max_length=255)

@@ -180,3 +180,45 @@
 <!-- BEGIN #content -->
 </div>
 {%endblock%}
+{% block scripts %}
+<script>
+
+   
+
+   
+ 
+ 
+
+/* ajax para hacer submit al fomulario */
+        $(document).on('submit', '#form_post', function (e) {
+          e.preventDefault();
+           $.ajax({
+            type: 'POST',
+            url: '/ajax_suscriptor/',
+            data: {
+              name: document.getElementById('name').value,
+              email: document.getElementById('email').value,
+              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function (response) {
+              if (response == 0) {
+                swal({
+                  title: 'Error de suscripción',
+                  text: 'Este Correo electrónico ya se encuentra registrado',
+                  icon: 'error',
+                  button: 'OK'
+                });
+              }
+              else {
+                swal({
+                  title: "Suscripción exitosa",
+                  text: "Bienvenid@",
+                  icon: "success",
+                  button: "Listo",
+                });
+              }
+            }
+          });
+        });
+    </script>
+{% endblock%}

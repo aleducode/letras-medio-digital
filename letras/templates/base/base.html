@@ -42,6 +42,7 @@
 <!-- BEGIN body -->
 
 <body class="woocommerce-page woocommerce ot-menu-will-follow">
+    
     <!-- BEGIN .boxed -->
     <div class="boxed">
         <!-- BEGIN #header -->
@@ -107,13 +108,12 @@
                     </div>
 
                     <!-- BEGIN .header-socials -->
-                    <div class="header-socials">
+                    <div class="header-socials" id="wrapper">
+                        <a href="https://www.facebook.com/LetrasMedio/" class="item facebook"><i class="fa fa-facebook"></i><span class="count"></span></a>
+                        <a href="https://www.instagram.com/letrasmedio/" class="item instagram"><i class="fa fa-instagram"></i><span class="count"> </span></a>
 
-                        <a href="https://www.facebook.com/LetrasMedio/"><i
-                                class="fa fa-facebook"></i><span>700</span></a>
-                        <a href="https://www.instagram.com/letrasmedio/"><i
-                                class="fa fa-instagram"></i><span>1.98k</span></a>
-                        <a href="https://twitter.com/letrasmedio"><i class="fa fa-twitter"></i><span>159</span></a>
+                 
+                        <a href="https://twitter.com/letrasmedio"><i class="fa fa-twitter"></i><span>500</span></a>
 
 
                         <!-- END .header-socials -->
@@ -253,7 +253,10 @@
 
         <!-- END .boxed -->
     </div>
-    
+    <div class="container">
+            <h3>Total Follower : <strong></strong></h3>
+            {% csrf_token %}
+          </div>
 
 
     <!-- Scripts -->
@@ -267,10 +270,27 @@
     <script type="text/javascript" src="{% static "base/jscript/dat-menu.min.js" %}"></script>
     <script type="text/javascript" src="{% static "base/jscript/theme-scripts.min.js" %}"></script>
     <script type="text/javascript" src="{% static "base/jscript/ot-lightbox.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "base/jscript/api.js" %}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- <script type="text/javascript" src="{% static "base/jscript/sweetalert.min.js" %}"></script> -->
    
+
     <script>
+        $('#wrapper').SocialCounter({
+        //Get Usernames
+       
+        facebook_user: '1588425094786630',
+        instagram_user: 'letrasmedio',
+        
+        twitter_user: 'aleducode',
+       
+        //Get Access Tokens,keys,client_ids
+
+        instagram_token:'3982867258.1677ed0.37b3913bddaf47d291a2a87badc5618e',
+ 
+        facebook_token:'EAAENSQQ4k6YBAKm9f0xNgv9upBb1RIs1jCMZCshHWLodjENkZC9fb10wfm5IZBv987ykbd9GobJKcRutzW4eFSNPEUYV7Pj2rbIt8LZBaW0atZARfzYl0o01k9ZBtkpP4rrgDayHNogFnWLLgJ5nyQdOfRDa2ZCbhL11KCMFkbWDIIh2nvRrCeQf5X4BqLwOWXHH0qNGB4ZCZCKGLda8tZAUY8',
+    
+      });
         // Animation time of revieling and hiding menu (defaut = 400)
         var _datMenuAnim = 400;
         // Animation effect for now it is just 1 (defaut = "effect-1")
@@ -287,9 +307,7 @@
         var _datMenuCustomS = "fa-search";
         // Menu icon (FontAwesome) in header (defaut = fa-bars)
         var _datMenuCustomM = "fa-bars";
-    </script>
-
-		<script>
+    
 			jQuery('.portus-article-slider-min').owlCarousel({
 				loop: true,
 				margin: 22,
