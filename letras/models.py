@@ -14,7 +14,8 @@ ROL_CHOICES=(
 PRIORIDAD_CHOICES=(
     (1,'Top 1'),
     (2,'Top 2'),
-    (3,'Normal')
+    (3,'Normal'),
+    (4,'Columna')
 		)
 
 def user_directory_path(instance,filename):
@@ -40,19 +41,37 @@ class Profile(models.Model):
         blank=True,
         null=True
         )
+    facebook = models.URLField('Perfil Facebook',max_length=200,blank=True)
+    instagram = models.URLField('Perfil instagram',max_length=200,blank=True)
+    twitter = models.URLField('Perfil Twitter',max_length=200,blank=True)
+    linkedin = models.URLField('Perfil Linkedin',max_length=200,blank=True)
+
+
     created=models.DateTimeField(auto_now_add=True)
     modified=models.DateTimeField(auto_now=True)
+    
 
     def __str__(self):
         """return username"""
         return self.user.username
 class Section(models.Model):
     """Notice sections"""
-    name=models.CharField('Nombre Seccion',max_length=255)
+    name  = models.CharField('Nombre Seccion',max_length=255)
     is_active=models.BooleanField(
         'Activa',
         default=1,
     )
+    color_background = models.CharField(
+        'Color Fondo',
+        max_length=10,
+        null=True,
+        blank=True)
+    color_text = models.CharField(
+        'Color Letra',
+        max_length=10,
+        null=True,
+        blank=True)
+    order = models.PositiveIntegerField('Posición en pantalla')
     def __str__(self):
         """return username"""
         return self.name

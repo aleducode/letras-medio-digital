@@ -22,8 +22,16 @@ urlpatterns = [
         view=views.SectionView.as_view(),
         name='section'),
     path(
+        route='opinion/',
+        view=views.OpinionView.as_view(),
+        name='opinion'),
+    path(
         route='ajax_suscriptor/',
         view=views.create_suscriptor,
         name='ajax_suscriptor'),
+    path(
+        route='columnista/<int:user>',
+        view=views.ColumnView.as_view(),
+        name='columnist'),
     
 ]

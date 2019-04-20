@@ -18,7 +18,7 @@
 {% endblock head %}
 <title>{% block title %} Letras Medio {% endblock %} </title>
 <!-- Stylesheets -->
-{% block head_css %}
+
 <link rel="shortcut icon" href="https://scontent.feoh4-2.fna.fbcdn.net/v/t1.0-9/35403105_1818260618469742_4695542450268143616_n.png?_nc_cat=0&oh=368f220f635ac696e221b90399940dee&oe=5BAB436F">
 <link type="text/css" rel="stylesheet" href="{% static "base/css/reset.min.css" %}"/>
 <link type="text/css" rel="stylesheet" href="{% static "base/css/portus.min.css" %}" />
@@ -34,7 +34,7 @@
 <link type="text/css" rel="stylesheet" href="{% static "base/css/dat-menu.min.css" %}"/>
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&amp;subset=latin,latin-ext" />
 <link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Montserrat:400,700' />
-
+{% block head_css %}
 {% endblock head_css %}
 
 
@@ -146,21 +146,8 @@
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
-
-                        <ul class="load-responsive" rel="Main Menu">
-                        
-                            <li><a href="{% url 'section' 1 %}">Colombia</a></li>
-                            <li><a href="{% url 'section' 2 %}">Antioquia</a></li>
-                            <li><a href="{% url 'section' 3 %}">Medellín</a></li>
-                            <li><a href="">Deportes</a></li>
-                            <li><a href="">Cultura</a></li>
-                            <li><a href="">Entretenimiento</a></li>
-                            <li><a href="">Virales</a></li>
-                            <!--<li><a href="store.html">Cultural</a></li>-->
-                            <!--<li><a href="archive.html">Entrevistas</a></li>-->
-
-
-                        </ul>
+                     
+                        {% show_sections %}
 
                         <!-- END .wrapper -->
                     </div>
@@ -228,13 +215,6 @@
                             </div>
                         </div>
 
-
-
-
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -253,12 +233,6 @@
 
         <!-- END .boxed -->
     </div>
-    <div class="container">
-            <h3>Total Follower : <strong></strong></h3>
-            {% csrf_token %}
-          </div>
-
-
     <!-- Scripts -->
     <script type="text/javascript" src="{% static "base/jscript/jquery-latest.min.js"%}"></script>
     <script type="text/javascript" src="{% static "base/jscript/bootstrap.min.js" %}"></script>
@@ -288,7 +262,7 @@
 
         instagram_token:'3982867258.1677ed0.37b3913bddaf47d291a2a87badc5618e',
  
-        facebook_token:'EAAENSQQ4k6YBAKm9f0xNgv9upBb1RIs1jCMZCshHWLodjENkZC9fb10wfm5IZBv987ykbd9GobJKcRutzW4eFSNPEUYV7Pj2rbIt8LZBaW0atZARfzYl0o01k9ZBtkpP4rrgDayHNogFnWLLgJ5nyQdOfRDa2ZCbhL11KCMFkbWDIIh2nvRrCeQf5X4BqLwOWXHH0qNGB4ZCZCKGLda8tZAUY8',
+        facebook_token:'EAAENSQQ4k6YBAN018o4DcH1jpBswGZCSeHacD17ZAFflb64NrJtfcySeVTVtZC9m5ZCGEK1prRca8XCuDng2DxaViZC74kNUBZABquWucC55ZCoH1eVWYlTWD8m26OVNOh2SKQuYDnIZCog7zBi76ndJDmPahDxn8Lu9OQlw3XVDas7otHNzplyz',
     
       });
         // Animation time of revieling and hiding menu (defaut = 400)

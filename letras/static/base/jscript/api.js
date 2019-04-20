@@ -153,9 +153,10 @@
     linkClick();
 
     //Call Functions
-    if(settings.twitter_user!=''){ 
-      twitter(); 
-    } if(settings.facebook_user!='' && settings.facebook_token!=''){ 
+    // if(settings.twitter_user!=''){ 
+    //   twitter(); 
+    //} 
+    if(settings.facebook_user!='' && settings.facebook_token!=''){ 
       facebook(); 
     } if(settings.instagram_user!='' && settings.instagram_token!=''){ 
       instagram();

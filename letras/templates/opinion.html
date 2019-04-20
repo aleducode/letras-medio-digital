@@ -1,0 +1,108 @@
+
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block head_css %}
+<style type="text/css">
+	.roundpic {
+		margin-top: 25px;
+		height: 150px;
+		width: 150px;
+		border: solid 2px #0099cc;
+		border-radius: 100%;
+	}
+	</style>
+{% endblock head_css %}
+{% block content %}
+
+
+<div id="content">
+
+
+	<!-- BEGIN .wrapper -->
+	<div class="wrapper">
+	
+			<!-- <div class="paragraph-row portus-main-content-panel">
+				<div class="column12">
+					<div class="block-category-list">
+						<a href="category.html" class="item" onmouseover="Columnas(this)"  ><i class="ti ti-thought"></i><strong>Columnas</strong></a>
+						<a onmouseover="NoColumnas(this)"  href="category.html" class="item"><i class="ti ti-comments-smiley"></i><strong>Caricaturas</strong></a>
+						<a onmouseover="NoColumnas(this)" href="category.html" class="item"><i class="ti ti-notepad"></i><strong>Editorial</strong></a>
+						<a onmouseover="NoColumnas(this)" href="category.html" class="item"><i class="ti ti-notepad"></i><strong>Columnistas Invitados</strong></a>
+
+					</div>
+				</div>
+			
+			</div>
+			<div class="col-md-4 col-sm-12 col-xs-12 " id="columnas_id" style="display: none" onmouseover="Columnas(this)"  onmouseout="NoColumnas(this)" >
+				<div class="paragraph-row portus-main-content-panel">
+					<div class="column12">
+						<div class="block-category-list">
+							<a href="category.html" class="item"><i class="ti ti-calendar"></i><strong>Martes</strong></a>
+							<a href="category.html" class="item"><i class="ti ti-comments"></i><strong>Jueves</strong></a>
+							<a href="category.html" class="item"><i class="ti ti-shine"></i><strong>Domingo</strong></a>
+
+
+							
+						</div>
+					</div>
+				 
+				</div>
+			</div>-->
+
+		<!-- BEGIN .portus-main-content-panel -->
+		<div class="paragraph-row portus-main-content-panel">
+
+			<div class="column12">
+
+				<div class="portus-main-content-s-block">
+
+
+					<div class="">
+						<div class="theiaStickySidebar">
+							<div class="portus-content-block">
+								<div class="portus-content-title">
+									<h2>Columnistas</h2>
+
+                                </div>
+                                {% if comlumnists%}
+
+								{%for columnist in comlumnists|slice:":4" %}
+								<div class="col-md-3 col-sm-12 col-xs-12" align="center">
+									<img class="center-block roundpic" src="{{columnist.picture.url}}" />
+
+									<h4 style="padding-top: 4px;padding-bottom: 0px">{{columnist.user.get_full_name}}</h4>
+									<span style="font-size: 17px">{{columnist.user.position}}</span>
+									<h1 style="font-size: 14px;padding-top: 0px">{{columnist.user.email}}</h1>
+									<a href="{% url 'columnist' columnist.user.pk %}" class="button">Ver Columnas</a>
+
+								</div>
+                                {%endfor%}
+                                {% endif %}
+
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+		<!-- ENd .portus-main-content-panel -->
+	</div>
+
+	<!-- END .wrapper -->
+</div>
+
+<!-- BEGIN #content -->
+</div>
+<script>
+	function Columnas(){
+		document.getElementById('columnas_id').style.display='block' 
+	}
+	function NoColumnas(){
+		document.getElementById('columnas_id').style.display='none' 
+	}
+</script>
+{% endblock content %}	

@@ -19,12 +19,12 @@ from sweetify.views import SweetifySuccessMixin
 import sweetify
 
 
-
+#TODO back to templateview and inheritance sidebar
 class IndexView(SweetifySuccessMixin,FormView):
     """Index view letras"""
     template_name = 'index.html'
     form_class = SuscriptorsForm
-    success_message = 'TestModel successfully updated!'
+    success_message = 'Suscripción exitosa'
     success_url = reverse_lazy('index')
     
     def get_context_data(self,**kwargs):
@@ -60,6 +60,7 @@ class PublicationView(DetailView):
     queryset=Notice.objects.all()
     context_object_name='notice'
 
+    #TODO: more than one photo and video
     def get_context_data(self,**kwargs):
         """add picture and other notices to context"""
         #normal context without override it
@@ -99,6 +100,46 @@ class SectionView(TemplateView):
         context['top_images'] = Picture.objects.filter(
             notice__in=context['top_notices'], is_principal=True)
         return context
+
+class OpinionView(TemplateView):
+    """Section opinion  View"""
+    template_name = 'opinion.html'
+    
+    def get_context_data(self,**kwargs):
+        """add picture and other notices to context"""
+        #normal context without override it
+        context=super().get_context_data(**kwargs)
+        #section information 
+        context['comlumnists']= Profile.objects.filter(role=2).order_by('-created')
+        return context
+
+class ColumnView(DetailView):
+    """Section opinion  View"""
+    template_name = 'column.html'
+    #recived form url
+    slug_url_kwarg = 'user'
+    #filter in model
+    slug_field = 'user'
+    queryset=Profile.objects.all()
+    context_object_name='columnist'
+
+    def get_context_data(self,**kwargs):
+        """add picture and other notices to context"""
+        #normal context without override it
+        context=super().get_context_data(**kwargs)
+        #section information 
+        context['columns']= Notice.objects.filter(
+            user=self.kwargs['user'],priority=4).order_by('-created')
+
+        context['other_columnist']= Profile.objects.filter(
+           role=2).order_by('-created')
+        return context
+
+    
+
+
+            
+
 
 def create_suscriptor(request):
     """ajax receptor to create sucriptor"""

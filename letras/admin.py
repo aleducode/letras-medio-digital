@@ -11,11 +11,11 @@ from letras.models import *
 class ProfileAdmin(admin.ModelAdmin):
     """Profile admin"""
     #hace ver los campos que yo quiera en el modelo de user
-    list_display = ('pk', 'user','role', 'position', 'biography', 'picture')
+    list_display = ('pk', 'user','role', 'position', 'picture')
     #crea links de acceso en los mismos campos
     list_display_links = ('user', 'position')
     #editable en la tabla
-    list_editable = ('role', 'biography')
+
     #busqueda por campos
     search_fields = (
         'user__email',
@@ -41,6 +41,14 @@ class ProfileAdmin(admin.ModelAdmin):
             'fields': (
                 ('position', 'role'),
                 ('biography'),
+            )
+        }),
+        ('Social Network', {
+            'fields': (
+                ('facebook'),
+                ('instagram'),
+                ('twitter'),
+                ('linkedin'),
             )
         }),
         ('Metadata', {
