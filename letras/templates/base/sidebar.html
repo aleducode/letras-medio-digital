@@ -1,0 +1,36 @@
+{% load static %}
+
+        <div class="widget">
+        <h3>Trinos <a href="https://twitter.com/letrasmedio">@letrasmedio</a></h3>
+            <a class="twitter-timeline" data-tweet-limit="2"
+                href="https://twitter.com/LetrasMedio?ref_src=twsrc%5Etfw"><h3>TweetsLetrasMedio</h3></a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+        <!-- BEGIN .widget -->
+
+        <div class="widget">
+        <h3>Suscríbete a Letras</h3>
+        <div class="widget-subscribe">
+            <div>
+                <p></p>
+            </div>
+            <div class="alert-message alert-green">
+                <strong>Mantente actualizado </strong>
+            </div>
+
+
+
+            <form id="form_post">
+                {% csrf_token %} 
+                <label class="label-input">
+                        <span>Nombre</span>
+                        <input type="text" id="name" required />
+                    </label>
+                    <label class="label-input">
+                        <span>Correo</span>
+                        <input type="email" id="email" required />
+                    </label>
+                    <input type="submit" class="button" value="Enviar" />
+                </form>
+        </div>
+    </div>
