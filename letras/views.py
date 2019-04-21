@@ -18,7 +18,11 @@ from django.template.loader import get_template
 from sweetify.views import SweetifySuccessMixin
 import sweetify
 
-
+def update_visitors():
+    visitors=Metrics.objects.get(pk=1)
+    visitors.visitors= visitors.visitors+1
+    visitors.save()
+    return
 #TODO back to templateview and inheritance sidebar
 class IndexView(SweetifySuccessMixin,FormView):
     """Index view letras"""
@@ -32,6 +36,7 @@ class IndexView(SweetifySuccessMixin,FormView):
         #normal context without override it
         context=super().get_context_data(**kwargs)
         #result of query
+        update_visitors()
         #top1
         context['top1_notice'] = Notice.objects.get(priority=1)
         context['top1_image'] = Picture.objects.get(
@@ -46,6 +51,7 @@ class IndexView(SweetifySuccessMixin,FormView):
             priority=3).order_by('-created')
         context['images'] = Picture.objects.filter(
             notice__in=context['notices'], is_principal=True)
+        
         return context
 
     def form_valid(self,form):
@@ -62,6 +68,7 @@ class PublicationView(DetailView):
 
     #TODO: more than one photo and video
     def get_context_data(self,**kwargs):
+        update_visitors()
         """add picture and other notices to context"""
         #normal context without override it
         context=super().get_context_data(**kwargs)
@@ -87,6 +94,7 @@ class SectionView(TemplateView):
     #TODO: paginator
     def get_context_data(self,**kwargs):
         """add picture and other notices to context"""
+        update_visitors()
         #normal context without override it
         context=super().get_context_data(**kwargs)
         #section information 
@@ -107,6 +115,7 @@ class OpinionView(TemplateView):
     
     def get_context_data(self,**kwargs):
         """add picture and other notices to context"""
+        update_visitors()
         #normal context without override it
         context=super().get_context_data(**kwargs)
         #section information 
@@ -125,6 +134,7 @@ class ColumnView(DetailView):
 
     def get_context_data(self,**kwargs):
         """add picture and other notices to context"""
+        update_visitors()
         #normal context without override it
         context=super().get_context_data(**kwargs)
         #section information 
@@ -134,12 +144,6 @@ class ColumnView(DetailView):
         context['other_columnist']= Profile.objects.filter(
            role=2).order_by('-created')
         return context
-
-    
-
-
-            
-
 
 def create_suscriptor(request):
     """ajax receptor to create sucriptor"""

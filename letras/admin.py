@@ -77,4 +77,5 @@ admin.site.register(Section)
 admin.site.register(Notice)
 admin.site.register(Picture)
 admin.site.register(Suscriptors)
+admin.site.register(Metrics)
     

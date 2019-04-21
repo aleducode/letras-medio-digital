@@ -155,3 +155,11 @@ class Suscriptors(models.Model):
     def __str__(self):
         """return suscriptor"""
         return 'Suscriptior:{}'.format(self.name)
+class Metrics(models.Model):
+    """Simple metrics storage"""
+    name = models.CharField('Nombre metrica',max_length=255)
+    visitors = models.IntegerField('Visitantes')
+    def __str__(self):
+        """return suscriptor"""
+        return 'Visitantes:{}'.format(self.visitors)
+
