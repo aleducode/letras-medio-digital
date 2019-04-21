@@ -2,7 +2,7 @@
 ### Django ###
 *.log
 *.pot
-.env/
+production/
 *.pyc
 __pycache__/
 local_settings.py
