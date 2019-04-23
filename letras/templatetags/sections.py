@@ -14,3 +14,8 @@ def show_sections():
     sections = Section.objects.filter(is_active=True)
     return {'sections': sections}
 
+@register.simple_tag
+def get_youtube(url):
+    url = url.split('v=')
+    return url[1]
+

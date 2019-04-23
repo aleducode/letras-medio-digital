@@ -1,5 +1,15 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
+{% load sections%}
+
+{% block meta %}
+<meta property="og:url" content="http://letrasmedio.ml/publication/{{notice.pk}}" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="{{notice.title}}" />
+<meta property="og:description" content="{{notice.lead}}" />
+<meta property="og:image" content="{{picture.route.url}}" />
+  
+{% endblock meta %}
 {% block content %}
 
 <div id="content">
@@ -31,6 +41,12 @@
                                 </div>
 
                                 <p>{{notice.text|linebreaks}}</p>
+                                {% if notice.video %}
+                                <div class="video-embed">
+                                    <iframe width="820" height="615" src="http://www.youtube.com/embed/{%get_youtube notice.video%}" frameborder="0" allowfullscreen=""></iframe>
+                                </div>
+                                {% endif %}
+                                
 
 
                             </div>
