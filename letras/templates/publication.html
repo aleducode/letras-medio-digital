@@ -35,7 +35,7 @@
                                 </span>
 
                                 <div class="wp-caption aligncenter">
-                                    <a href="" class="lightbox-photo" title="{{picture}}">
+                                    <a href="{{picture.route.url}}" class="lightbox-photo" title="{{picture}}">
                                         <img src="{{picture.route.url}}" width="680" height="357" alt="" /></a>
                                     <p class="wp-caption-text">{{picture.footer}}</p>
                                 </div>
@@ -46,6 +46,8 @@
                                     <iframe width="820" height="615" src="http://www.youtube.com/embed/{%get_youtube notice.video%}" frameborder="0" allowfullscreen=""></iframe>
                                 </div>
                                 {% endif %}
+
+                                
                                 
 
 
@@ -199,11 +201,6 @@
 {% block scripts %}
 <script>
 
-   
-
-   
- 
- 
 
 /* ajax para hacer submit al fomulario */
         $(document).on('submit', '#form_post', function (e) {
