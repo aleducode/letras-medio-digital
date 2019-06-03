@@ -74,7 +74,7 @@ class PublicationView(DetailView):
         context=super().get_context_data(**kwargs)
         #result of query 
         notice=self.get_object()
-        context['picture']= Picture.objects.get(notice=notice) or None
+        context['picture'] = Picture.objects.get(notice=notice) or None
         #top 2
         #top2
         context['top2_notices'] = Notice.objects.filter(
@@ -87,6 +87,13 @@ class PublicationView(DetailView):
         context['section_images'] = Picture.objects.filter(
             notice__in=context['section_notices'], is_principal=True)
         return context
+
+class ColumnDetailView(DetailView):
+    """Column detail"""
+    template_name = 'column_detail.html'
+    pk_url_kwarg = 'pk'
+    queryset=Notice.objects.all()
+    context_object_name='column'
 
 class SectionView(TemplateView):
     """Section Generic viewer"""

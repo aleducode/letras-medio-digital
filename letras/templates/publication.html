@@ -1,5 +1,15 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
+{% load sections%}
+
+{% block meta %}
+<meta property="og:url" content="http://letrasmedio.ml/publication/{{notice.pk}}" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="{{notice.title}}" />
+<meta property="og:description" content="{{notice.lead}}" />
+<meta property="og:image" content="{{picture.route.url}}" />
+  
+{% endblock meta %}
 {% block content %}
 
 <div id="content">
@@ -25,12 +35,20 @@
                                 </span>
 
                                 <div class="wp-caption aligncenter">
-                                    <a href="" class="lightbox-photo" title="{{picture}}">
+                                    <a href="{{picture.route.url}}" class="lightbox-photo" title="{{picture}}">
                                         <img src="{{picture.route.url}}" width="680" height="357" alt="" /></a>
                                     <p class="wp-caption-text">{{picture.footer}}</p>
                                 </div>
 
                                 <p>{{notice.text|linebreaks}}</p>
+                                {% if notice.video %}
+                                <div class="video-embed">
+                                    <iframe width="820" height="615" src="http://www.youtube.com/embed/{%get_youtube notice.video%}" frameborder="0" allowfullscreen=""></iframe>
+                                </div>
+                                {% endif %}
+
+                                
+                                
 
 
                             </div>
@@ -39,7 +57,9 @@
 
                             <!-- BEGIN .portus-content-block -->
                             <div class="widget">
-
+                                {% comment %}
+                                  #TODO share notice
+                                {% endcomment %}
                                 <h3>Compartir</h3>
                                 <div class="social-widget">
                                     <div class="social-squares">
@@ -183,11 +203,6 @@
 {% block scripts %}
 <script>
 
-   
-
-   
- 
- 
 
 /* ajax para hacer submit al fomulario */
         $(document).on('submit', '#form_post', function (e) {

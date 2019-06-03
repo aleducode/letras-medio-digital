@@ -61,7 +61,7 @@
                                         <div>
                                             <p>{{column.lead}}                                                
                                             </p>
-                                            <p><a href="" class="button button-active">Leer</a></p>
+                                            <p><a href="{% url 'column' column.pk %}" class="button button-active">Leer</a></p>
                                         </div>
                                     </div>
                                     {% endfor %}

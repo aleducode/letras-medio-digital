@@ -1,0 +1,39 @@
+
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div id="content">
+
+
+    
+    <!-- BEGIN .wrapper -->
+    <div class="wrapper">
+
+        <!-- BEGIN .portus-main-content-panel -->
+        <div class="paragraph-row portus-main-content-panel">
+            <div class="column12">
+                <div class="portus-main-content-block">
+
+                    <div class="portus-content-block">
+                        <div class="portus-content-title">
+                            <h2>{{column.title}}</h2>
+                            <a href="{%url 'columnist' column.user.pk %}" class="right set-this-dotted">Regresar</a>
+                        </div>
+                        <p>Por: @{{column.user}}</p>
+                       
+                        <div class="portus-main-article-block">
+                           {{column.text|linebreaks}}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        <!-- ENd .portus-main-content-panel -->
+        </div>
+
+    <!-- END .wrapper -->
+    </div>
+    
+<!-- BEGIN #content -->
+</div>
+{% endblock content %}

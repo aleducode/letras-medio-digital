@@ -1,6 +1,10 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
+
+{% block meta %}
+{% endblock meta %}
 {% block content %}
+
 <div id="content">
     <!-- BEGIN #portus-read-later -->
     <!-- BEGIN .wrapper -->
@@ -73,7 +77,7 @@
                                                 </div>
                                                 {%for image in images%}
                                                 <a href="{% url 'publication' notice.pk %}">{%if image.notice.pk == notice.pk%}
-                                                    <img src="{{image.route.url}}" height="146" width="260" alt="" />
+                                                    <img src="{{image.route.url}}" height="146px" width="260px"  alt="" />
                                                     {%endif%}</a>
                                                 {%endfor%}
                                             </div>

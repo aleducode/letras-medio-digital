@@ -33,5 +33,10 @@ urlpatterns = [
         route='columnista/<int:user>',
         view=views.ColumnView.as_view(),
         name='columnist'),
+    path(
+        route='columna/<int:pk>',
+        view=views.ColumnDetailView.as_view(),
+        name='column'),
+        
     
 ]
