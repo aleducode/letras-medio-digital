@@ -4,12 +4,13 @@
 
 {% block meta %}
 <!-- Twitter Card data -->
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@letrasmedio">
 <meta name="twitter:title" content="{{notice.title}}">
 <meta name="twitter:description" content="{{notice.lead}}">
 <meta name="twitter:creator" content="@letrasmedio">
 <meta name="twitter:image" content="{{picture.route.url}}">
+<meta name="twitter:url" content="http://letrasmedio.com/publicacion/{{notice.id}}" />
 <meta property="og:title" content="{{notice.title}}"/>
 <meta property="og:image" content="{{picture.route.url}}"/>
 <meta property="og:site_name" content="Letras Medio"/>
