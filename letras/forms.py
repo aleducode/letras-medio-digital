@@ -9,5 +9,5 @@ from letras.models import *
 class SuscriptorsForm(forms.ModelForm):
     """ post model form"""
     class Meta:
-        model=Suscriptors
+        model=Suscriptor
         fields=('name','email')

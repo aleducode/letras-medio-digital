@@ -1,0 +1,21 @@
+<div class="breaking-news">
+                <!-- BEGIN .wrapper -->
+                <div class="wrapper">
+                    <strong class="br-title">Reciente</strong>
+                    <div class="br-article-list">
+                        <div class="br-article-list-inner">
+                            {% for breaking in breakings %}
+                                <div class="br-article">
+                                    <a href="{% url 'publication' breaking.pk %}"><strong>{{breaking.title}}</strong></a>
+                                </div>
+                                <div class="br-article">
+                                    <a href="{% url 'publication' breaking.pk %}"><strong>{{breaking.title}}</strong></a>
+                                </div>
+                            {%endfor%}
+
+                        </div>
+                    </div>
+                    <!-- END .wrapper -->
+                </div>
+                <!-- END .breaking-news -->
+            </div>

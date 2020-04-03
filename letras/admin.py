@@ -2,7 +2,7 @@
 #Django
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-
+from django.forms.models import BaseInlineFormSet
 #models
 from letras.models import *
 
@@ -69,13 +69,42 @@ class ProfileInLine(admin.StackedInline):
 
 class UserAdmin(BaseUserAdmin):
     inlines=(ProfileInLine,)
-    
+
+
+class PicturesFormSet(BaseInlineFormSet):
+    """Form set to ensure principal picture."""
+
+    def clean(self):
+        """Validate duplicate content in module."""
+        super().clean()
+        data = self.cleaned_data
+        if len(data[0]):
+            # Ensure principal image for notice
+            had_principal = False
+            for image in data:
+                if image.get('is_principal', False):
+                    had_principal = True
+            if not had_principal:
+                raise forms.ValidationError(
+                    'Favor seleccione cuál imagen es la principal.')
+        else:
+            raise forms.ValidationError(
+                'No se puede publicar noticia sin imagenes')
+
+class PhotosAdminInline(admin.StackedInline):
+    model = Picture
+    extra = 1
+    formset = PicturesFormSet
+
+@admin.register(Notice)
+class NoticeAdmin(admin.ModelAdmin):
+    inlines = [PhotosAdminInline]
+    list_display = ('title', 'section', 'priority')
+    list_filter = ['section__name', 'priority']
+
 
 admin.site.unregister(User)
 admin.site.register(User,UserAdmin)
 admin.site.register(Section)
-admin.site.register(Notice)
-admin.site.register(Picture)
-admin.site.register(Suscriptors)
-admin.site.register(Metrics)
+admin.site.register(Suscriptor)
     
