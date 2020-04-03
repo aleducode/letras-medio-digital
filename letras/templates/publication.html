@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-{% load staticfiles %}
+
 {% load sections%}
 
 {% block meta %}
@@ -37,20 +37,22 @@
                                 </span>
 
                                 <div class="wp-caption aligncenter">
-                                    <a href="{{picture.route.url}}" class="lightbox-photo" title="{{picture}}">
-                                        <img src="{{picture.route.url}}" width="680" height="357" alt="" /></a>
+                                    <a href="{{notice.principal_picture}}" class="lightbox-photo" title="{{picture}}">
+                                        <img src="{{notice.principal_picture}}" width="680" height="357" alt="" /></a>
                                     <p class="wp-caption-text">{{picture.footer}}</p>
                                 </div>
 
                                 <p>{{notice.text|linebreaks}}</p>
                                 {% if notice.video %}
                                 <div class="video-embed">
-                                    <iframe width="820" height="615" src="http://www.youtube.com/embed/{%get_youtube notice.video%}" frameborder="0" allowfullscreen=""></iframe>
+                                    <iframe width="820" height="615"
+                                        src="http://www.youtube.com/embed/{%get_youtube notice.video%}" frameborder="0"
+                                        allowfullscreen=""></iframe>
                                 </div>
                                 {% endif %}
 
-                                
-                                
+
+
 
 
                             </div>
@@ -60,7 +62,7 @@
                             <!-- BEGIN .portus-content-block -->
                             <div class="widget">
                                 {% comment %}
-                                  #TODO share notice
+                                #TODO share notice
                                 {% endcomment %}
                                 <h3>Compartir</h3>
                                 <div class="social-widget">
@@ -101,13 +103,9 @@
                                     {% for notice in top2_notices%}
                                     <div class="item">
                                         <div class="item-header">
-
-                                            {%for image in top2_images%}
-                                            {%if image.notice.pk == notice.pk%}
                                             <a href="{% url 'publication' notice.pk%}"><img
-                                                    src="{{image.route.url}}" alt="" /></a>
-                                            {%endif%}
-                                            {%endfor%}
+                                                    src="{{notice.principal_picture}}" alt="" /></a>
+
                                         </div>
                                         <div class="item-content">
 
@@ -116,7 +114,7 @@
                                                 <a href="category.html" data-ot-css="color: #f37326;"><i
                                                         class="fa fa-calendar"></i>
                                                     {{notice.created|date:"d M"}}</a>
-                                                    <a href="category.html" data-ot-css="color: #f37326;"><i
+                                                <a href="category.html" data-ot-css="color: #f37326;"><i
                                                         class="fa fa-star"></i>
                                                     {{notice.section}}</a>
                                             </div>
@@ -156,14 +154,12 @@
                                                 <span data-hover-text-me="Leer"><a
                                                         href="{% url 'publication' notice.pk%}"
                                                         class="fa fa-search"></a></span>
-                                               
+
                                             </div>
-                                            {%for image in section_images%}
-                                            {%if image.notice.pk == notice.pk%}
-                                            <a href="{% url 'publication' notice.pk%}"><img src="{{image.route.url}}"
-                                                    alt="{{image}}" /></a>
-                                            {%endif%}
-                                            {%endfor%}
+
+                                            <a href="{% url 'publication' notice.pk%}"><img
+                                                    src="{{notice.principal_picture}}" /></a>
+
                                         </div>
                                         <div class="item-content">
                                             <h4><a href="{% url 'publication' notice.pk%}">{{notice.title}}</a>
@@ -179,7 +175,8 @@
 
 
                                 </div>
-                                <a href="{% url 'section' notice.section.pk %}" class="widget-view-more">Ver más Noticias</a>
+                                <a href="{% url 'section' notice.section.pk %}" class="widget-view-more">Ver más
+                                    Noticias</a>
 
                                 <!-- END .widget -->
                             </div>
@@ -206,36 +203,36 @@
 <script>
 
 
-/* ajax para hacer submit al fomulario */
-        $(document).on('submit', '#form_post', function (e) {
-          e.preventDefault();
-           $.ajax({
+    /* ajax para hacer submit al fomulario */
+    $(document).on('submit', '#form_post', function (e) {
+        e.preventDefault();
+        $.ajax({
             type: 'POST',
             url: '/ajax_suscriptor/',
             data: {
-              name: document.getElementById('name').value,
-              email: document.getElementById('email').value,
-              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
             },
             success: function (response) {
-              if (response == 0) {
-                swal({
-                  title: 'Error de suscripción',
-                  text: 'Este Correo electrónico ya se encuentra registrado',
-                  icon: 'error',
-                  button: 'OK'
-                });
-              }
-              else {
-                swal({
-                  title: "Suscripción exitosa",
-                  text: "Bienvenid@",
-                  icon: "success",
-                  button: "Listo",
-                });
-              }
+                if (response == 0) {
+                    swal({
+                        title: 'Error de suscripción',
+                        text: 'Este Correo electrónico ya se encuentra registrado',
+                        icon: 'error',
+                        button: 'OK'
+                    });
+                }
+                else {
+                    swal({
+                        title: "Suscripción exitosa",
+                        text: "Bienvenid@",
+                        icon: "success",
+                        button: "Listo",
+                    });
+                }
             }
-          });
         });
-    </script>
+    });
+</script>
 {% endblock%}

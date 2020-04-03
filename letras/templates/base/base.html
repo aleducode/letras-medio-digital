@@ -1,50 +1,53 @@
-{% load staticfiles %}
+{% load static %}
 {% load sections %}
 <!DOCTYPE HTML>
 <!-- BEGIN html -->
-<html lang = "es">
+<html lang="es">
 <!-- BEGIN head -->
+
 <head>
 
-{% block head %}
-<!-- Meta Tags -->
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="description" content="" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-{% block meta %}
+    {% block head %}
+    <!-- Meta Tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% block meta %}
 
-{% endblock meta %}
+    {% endblock meta %}
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<!-- Favicon -->
-{% endblock head %}
-<title>{% block title %} Letras Medio {% endblock %} </title>
-<!-- Stylesheets -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!-- Favicon -->
+    {% endblock head %}
+    <title>{% block title %} Letras Medio {% endblock %} </title>
+    <!-- Stylesheets -->
 
-<link rel="shortcut icon" href="https://scontent.feoh4-2.fna.fbcdn.net/v/t1.0-9/35403105_1818260618469742_4695542450268143616_n.png?_nc_cat=0&oh=368f220f635ac696e221b90399940dee&oe=5BAB436F">
-<link type="text/css" rel="stylesheet" href="{% static "base/css/reset.min.css" %}"/>
-<link type="text/css" rel="stylesheet" href="{% static "base/css/portus.min.css" %}" />
-<link type="text/css" rel="stylesheet" href="{% static "base/css/font-awesome.min.css" %}"/>
-<link type="text/css" rel="stylesheet" href="{% static "base/css/themify-icons.min.css" %}"/>
-<link type="text/css" rel="stylesheet" href="{% static "base/css/weather-icons.min.css" %}"/>
-<link type="text/css" rel="stylesheet" href="{% static "base/css/bootstrap.min.css" %}"/>
-<link type="text/css" rel="stylesheet" href="{% static "base/css/owl.carousel.min.css" %}"/>
-<link type="text/css" rel="stylesheet" href="{% static "base/css/main-stylesheet.min.css" %}"/>
-<link type="text/css" rel="stylesheet" href="{% static "base/css/ot-lightbox.min.css" %}"/>
-<link type="text/css" rel="stylesheet" href="{% static "base/css/shortcodes.min.css" %}"/>
-<link type="text/css" rel="stylesheet" href="{% static "base/css/responsive.min.css" %}"/>
-<link type="text/css" rel="stylesheet" href="{% static "base/css/dat-menu.min.css" %}"/>
-<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&amp;subset=latin,latin-ext" />
-<link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Montserrat:400,700' />
-{% block head_css %}
-{% endblock head_css %}
+    <link rel="shortcut icon"
+        href="https://scontent.feoh4-2.fna.fbcdn.net/v/t1.0-9/35403105_1818260618469742_4695542450268143616_n.png?_nc_cat=0&oh=368f220f635ac696e221b90399940dee&oe=5BAB436F">
+    <link type="text/css" rel="stylesheet" href="{% static "base/css/reset.min.css" %}" />
+    <link type="text/css" rel="stylesheet" href="{% static "base/css/portus.min.css" %}" />
+    <link type="text/css" rel="stylesheet" href="{% static "base/css/font-awesome.min.css" %}" />
+    <link type="text/css" rel="stylesheet" href="{% static "base/css/themify-icons.min.css" %}" />
+    <link type="text/css" rel="stylesheet" href="{% static "base/css/weather-icons.min.css" %}" />
+    <link type="text/css" rel="stylesheet" href="{% static "base/css/bootstrap.min.css" %}" />
+    <link type="text/css" rel="stylesheet" href="{% static "base/css/owl.carousel.min.css" %}" />
+    <link type="text/css" rel="stylesheet" href="{% static "base/css/main-stylesheet.min.css" %}" />
+    <link type="text/css" rel="stylesheet" href="{% static "base/css/ot-lightbox.min.css" %}" />
+    <link type="text/css" rel="stylesheet" href="{% static "base/css/shortcodes.min.css" %}" />
+    <link type="text/css" rel="stylesheet" href="{% static "base/css/responsive.min.css" %}" />
+    <link type="text/css" rel="stylesheet" href="{% static "base/css/dat-menu.min.css" %}" />
+    <link type="text/css" rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&amp;subset=latin,latin-ext" />
+    <link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Montserrat:400,700' />
+    {% block head_css %}
+    {% endblock head_css %}
 
 
 </head>
 <!-- BEGIN body -->
 
 <body class="woocommerce-page woocommerce ot-menu-will-follow">
-    
+
     <!-- BEGIN .boxed -->
     <div class="boxed">
         <!-- BEGIN #header -->
@@ -111,11 +114,13 @@
 
                     <!-- BEGIN .header-socials -->
                     <div class="header-socials" id="wrapper">
-                        <a href="https://www.facebook.com/LetrasMedio/" class="item facebook"><i class="fa fa-facebook"></i><span class="count"></span></a>
-                        <a href="https://www.instagram.com/letrasmedio/" class="item instagram"><i class="fa fa-instagram"></i><span class="count"> </span></a>
+                        <a href="https://www.facebook.com/LetrasMedio/" class="item facebook"><i
+                                class="fa fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/letrasmedio/" class="item instagram"><i
+                                class="fa fa-instagram"></i></a>
 
-                 
-                        <a href="https://twitter.com/letrasmedio"><i class="fa fa-twitter"></i><span>500</span></a>
+
+                        <a href="https://twitter.com/letrasmedio"><i class="fa fa-twitter"></i></a>
 
 
                         <!-- END .header-socials -->
@@ -148,7 +153,7 @@
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
-                     
+
                         {% show_sections %}
 
                         <!-- END .wrapper -->
@@ -224,7 +229,8 @@
             <div id="footer-info">
                 <div class="wrapper">
                     <ul align="center">
-                        <p>&copy; <strong>Desarrollado e implementado por <a href="https://github.com/alejandroduquec">Aduquec</a> </p>
+                        <p>&copy; <strong>Desarrollado e implementado por <a
+                                    href="https://github.com/alejandroduquec">Aduquec</a> </p>
                     </ul>
 
                 </div>
@@ -249,24 +255,24 @@
     <script type="text/javascript" src="{% static "base/jscript/api.js" %}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- <script type="text/javascript" src="{% static "base/jscript/sweetalert.min.js" %}"></script> -->
-   
+
 
     <script>
         $('#wrapper').SocialCounter({
-        //Get Usernames
-       
-        facebook_user: '1588425094786630',
-        instagram_user: 'letrasmedio',
-        
-        twitter_user: 'aleducode',
-       
-        //Get Access Tokens,keys,client_ids
+            //Get Usernames
 
-        instagram_token:'3982867258.1677ed0.37b3913bddaf47d291a2a87badc5618e',
- 
-        facebook_token:'EAAENSQQ4k6YBAN018o4DcH1jpBswGZCSeHacD17ZAFflb64NrJtfcySeVTVtZC9m5ZCGEK1prRca8XCuDng2DxaViZC74kNUBZABquWucC55ZCoH1eVWYlTWD8m26OVNOh2SKQuYDnIZCog7zBi76ndJDmPahDxn8Lu9OQlw3XVDas7otHNzplyz',
-    
-      });
+            facebook_user: '1588425094786630',
+            instagram_user: 'letrasmedio',
+
+            twitter_user: 'aleducode',
+
+            //Get Access Tokens,keys,client_ids
+
+            instagram_token: '3982867258.1677ed0.37b3913bddaf47d291a2a87badc5618e',
+
+            facebook_token: 'EAAENSQQ4k6YBAN018o4DcH1jpBswGZCSeHacD17ZAFflb64NrJtfcySeVTVtZC9m5ZCGEK1prRca8XCuDng2DxaViZC74kNUBZABquWucC55ZCoH1eVWYlTWD8m26OVNOh2SKQuYDnIZCog7zBi76ndJDmPahDxn8Lu9OQlw3XVDas7otHNzplyz',
+
+        });
         // Animation time of revieling and hiding menu (defaut = 400)
         var _datMenuAnim = 400;
         // Animation effect for now it is just 1 (defaut = "effect-1")
@@ -283,95 +289,96 @@
         var _datMenuCustomS = "fa-search";
         // Menu icon (FontAwesome) in header (defaut = fa-bars)
         var _datMenuCustomM = "fa-bars";
-    
-			jQuery('.portus-article-slider-min').owlCarousel({
-				loop: true,
-				margin: 22,
-				responsiveClass: true,
-				responsive:{
-					0:{
-						items: 1,
-						nav: true
-					},
-					600:{
-						items: 3,
-						nav: false
-					},
-					1000:{
-						items: 5,
-						nav: true,
-						loop: false
-					}
-				}
-			});
 
-			jQuery('.portus-video-slider-min').owlCarousel({
-				loop: true,
-				margin: 22,
-				responsiveClass: true,
-				responsive:{
-					0:{
-						items: 1,
-						nav: true
-					},
-					600:{
-						items: 2,
-						nav: false
-					},
-					1000:{
-						items: 4,
-						nav: true,
-						loop: false
-					}
-				}
-			});
+        jQuery('.portus-article-slider-min').owlCarousel({
+            loop: true,
+            margin: 22,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                600: {
+                    items: 3,
+                    nav: false
+                },
+                1000: {
+                    items: 5,
+                    nav: true,
+                    loop: false
+                }
+            }
+        });
 
-			jQuery('.portus-article-slider-big').owlCarousel({
-				loop: true,
-				margin: 0,
-				responsiveClass: true,
-				responsive:{
-					0:{
-						items: 1,
-						nav: false
-					},
-					650:{
-						items: 2,
-						nav: false
-					},
-					1000:{
-						items: 2,
-						nav: true,
-						loop: false
-					}
-				}
-			});
+        jQuery('.portus-video-slider-min').owlCarousel({
+            loop: true,
+            margin: 22,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                600: {
+                    items: 2,
+                    nav: false
+                },
+                1000: {
+                    items: 4,
+                    nav: true,
+                    loop: false
+                }
+            }
+        });
 
-			jQuery('.article-slider-full-small').owlCarousel({
-				loop: true,
-				margin: 20,
-				responsiveClass: true,
-				items: 1,
-				nav: true,
-				loop: false
-			});
+        jQuery('.portus-article-slider-big').owlCarousel({
+            loop: true,
+            margin: 0,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                650: {
+                    items: 2,
+                    nav: false
+                },
+                1000: {
+                    items: 2,
+                    nav: true,
+                    loop: false
+                }
+            }
+        });
 
-			jQuery('.w-gallery-slider .item-header').owlCarousel({
-				loop: true,
-				margin: 20,
-				responsiveClass: true,
-				items: 1,
-				nav: true,
-				loop: false
-			});
-        </script>
-        {% load sweetify %}
-        {% sweetify %}
-        
-        {% block scripts %}
-        {% endblock%}
-        
-		<!-- END body -->
-	</body>
-	<!-- END html -->
-	</html>
+        jQuery('.article-slider-full-small').owlCarousel({
+            loop: true,
+            margin: 20,
+            responsiveClass: true,
+            items: 1,
+            nav: true,
+            loop: false
+        });
+
+        jQuery('.w-gallery-slider .item-header').owlCarousel({
+            loop: true,
+            margin: 20,
+            responsiveClass: true,
+            items: 1,
+            nav: true,
+            loop: false
+        });
+    </script>
+    {% load sweetify %}
+    {% sweetify %}
+
+    {% block scripts %}
+    {% endblock%}
+
+    <!-- END body -->
+</body>
+<!-- END html -->
+
+</html>
