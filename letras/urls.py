@@ -2,7 +2,6 @@
 
 # Django
 from django.urls import path
-from django.views.generic import TemplateView
 
 # View
 from letras import views
@@ -37,6 +36,6 @@ urlpatterns = [
         route='columna/<int:pk>',
         view=views.ColumnDetailView.as_view(),
         name='column'),
-        
-    
+
+
 ]

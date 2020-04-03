@@ -1,13 +1,15 @@
-""" users forms"""
+"""Users forms."""
 
-#Django
+# Django
 from django import forms
 
-#Models 
-from letras.models import *
+# Models
+from letras.models import Suscriptor
+
 
 class SuscriptorsForm(forms.ModelForm):
-    """ post model form"""
+    """Subscriptor model form."""
+
     class Meta:
-        model=Suscriptors
-        fields=('name','email')
+        model = Suscriptor
+        fields = ('name', 'email')

@@ -1,5 +1,4 @@
 {% extends 'base/base.html' %}
-{% load staticfiles %}
 
 {% block meta %}
 {% endblock meta %}
@@ -13,9 +12,10 @@
         <div class="paragraph-row portus-main-content-panel">
             <div class="column12">
                 <div class="portus-article-slider-big owl-carousel">
+                    {% if top1_notice %}
                     <div class="item">
                         <a href="{% url 'publication' top1_notice.pk %}" class="item-photo">
-                            <img src="{{top1_image.route.url}}" height="390" width="600" style="height: 390px; width: 600px " />
+                            <img src="{{top1_notice.principal_picture}}" height="390" width="600" style="height: 390px; width: 600px " />
                             <span class="item-content">
                                 <strong class="item-article-category" data-ot-css="color: #f3d826;"></strong>
                                 <strong class="item-article-title">{{top1_notice.title}}</strong>
@@ -28,16 +28,15 @@
                             </span>
                         </a>
                     </div>
+                    {% endif %}
+
                     <div class="item item-small">
+                        {% if top2_notices%}
+                          
                         {%for notice in top2_notices|slice:":4" %}
 
                         <a href="{% url 'publication' notice.pk %}" class="item-photo">
-                            {%for image in top2_images%}
-
-                            {%if image.notice.pk == notice.pk%}
-                            <img src="{{image.route.url}}" alt="" height="195" width="300" style="height: 195px; width: 300px "  />
-                            {%endif%}
-                            {%endfor%}
+                            <img src="{{notice.principal_picture}}" alt="" height="195" width="300" style="height: 195px; width: 300px "  />
                             <span class="item-content">
                                 <strong class="item-article-title">{{notice.title}}</strong>
                                 <span class="item-meta">
@@ -47,6 +46,8 @@
                             </span>
                         </a>
                         {%endfor%}
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
@@ -75,11 +76,9 @@
                                                             href="{% url 'publication' notice.pk %}"
                                                             class="fa fa-search"></a></span>
                                                 </div>
-                                                {%for image in images%}
-                                                <a href="{% url 'publication' notice.pk %}">{%if image.notice.pk == notice.pk%}
-                                                    <img src="{{image.route.url}}" height="146px" width="260px"  alt="" />
-                                                    {%endif%}</a>
-                                                {%endfor%}
+                                                <a href="{% url 'publication' notice.pk %}">
+                                                    <img src="{{notice.principal_picture}}" height="146px" width="260px"  alt="" />
+                                                    </a>
                                             </div>
                                             <div class="item-content">
                                                 <h3><a href="{% url 'publication' notice.pk %}">{{notice.title}}</a>
