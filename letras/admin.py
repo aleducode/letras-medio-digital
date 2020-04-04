@@ -104,6 +104,11 @@ class PhotosAdminInline(admin.TabularInline):
     extra = 1
     formset = PicturesFormSet
 
+
+@admin.register(Notice)
+class NoticeAdmin(admin.ModelAdmin):
+    inlines = [PhotosAdminInline]
+    list_display = ('title', 'section', 'priority')
     list_filter = ['section__name', 'priority']
 
 
