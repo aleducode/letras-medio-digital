@@ -113,7 +113,7 @@ class Notice(models.Model):
     @property
     def principal_picture(self):
         """Return principal image url."""
-        return self.pictures.get(is_principal=True).route.url
+        return self.pictures.filter(is_principal=True).last().route.url
 
 
 class Picture(models.Model):
@@ -126,7 +126,7 @@ class Picture(models.Model):
     route = models.FileField(upload_to=notices_directory_path)
     is_principal = models.BooleanField(
         'Es Principal',
-        default=False,
+        default=True,
     )
     footer = models.CharField(
         'Pie de foto',
@@ -136,7 +136,7 @@ class Picture(models.Model):
         default='por: Letras Medio')
 
     def __str__(self):
-        """returrn picture name"""
+        """return notice name."""
         return 'Notice:{}'.format(self.notice)
 
     class Meta:

@@ -110,6 +110,7 @@ class NoticeAdmin(admin.ModelAdmin):
     inlines = [PhotosAdminInline]
     list_display = ('title', 'section', 'priority')
     list_filter = ['section__name', 'priority']
+    search_fields = ('title', 'section__name', 'text', 'lead')
 
 
 admin.site.unregister(User)
