@@ -30,8 +30,9 @@
                     </div>
                     {% endif %}
 
+                    {% if top2_notices %}
+
                     <div class="item item-small">
-                        {% if top2_notices%}
                           
                         {%for notice in top2_notices|slice:":4" %}
 
@@ -46,9 +47,10 @@
                             </span>
                         </a>
                         {%endfor%}
-                        {% endif %}
 
                     </div>
+                    {% endif %}
+
                 </div>
             </div>
             <!-- ENd .portus-main-content-panel -->
@@ -68,6 +70,7 @@
                                 </div>
                                 <div class="article-grid-default">
                                     <div class="article-grid-layout-3">
+                                        {%if notices %}
                                         {%for notice in notices|slice:":9" %}
                                         <div class="item">
                                             <div class="item-header item-header-hover">
@@ -79,6 +82,7 @@
                                                 <a href="{% url 'publication' notice.pk %}">
                                                     <img src="{{notice.principal_picture}}" height="146px" width="260px"  alt="" />
                                                     </a>
+                                       
                                             </div>
                                             <div class="item-content">
                                                 <h3><a href="{% url 'publication' notice.pk %}">{{notice.title}}</a>
@@ -101,6 +105,7 @@
                                             </div>
                                         </div>
                                         {%endfor%}
+                                        {%endif%}
 
                                     </div>
 
@@ -119,7 +124,6 @@
                             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                         </div>
                         <!-- BEGIN .widget -->
-
                         <div class="widget">
 
                         <h3>Suscríbete a Letras</h3>

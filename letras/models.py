@@ -81,15 +81,6 @@ class Section(models.Model):
         return self.name
 
 
-def move_top2():
-        now_top2 = Notice.objects.filter(priority=2).order_by('-created')
-        if len(now_top2) == 4:
-            notice = now_top2[3]
-            notice.priority = 3
-            notice.save()
-        return
-
-
 class Notice(models.Model):
     """Notice model."""
 
@@ -102,7 +93,7 @@ class Notice(models.Model):
         on_delete=models.CASCADE,
         null=True,
         blank=True
-        )
+    )
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
     priority = models.PositiveIntegerField(choices=PRIORIDAD_CHOICES)
 
@@ -118,7 +109,7 @@ class Notice(models.Model):
     def __str__(self):
         """return notice's title."""
         return '{} | {}'.format(self.title, self.section)
-    
+
     @property
     def principal_picture(self):
         """Return principal image url."""
@@ -131,7 +122,7 @@ class Picture(models.Model):
         Notice,
         on_delete=models.CASCADE,
         related_name='pictures'
-        )
+    )
     route = models.FileField(upload_to=notices_directory_path)
     is_principal = models.BooleanField(
         'Es Principal',
