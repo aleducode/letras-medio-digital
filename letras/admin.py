@@ -10,7 +10,8 @@ from letras.models import (
     User,
     Section,
     Notice,
-    Picture
+    Picture,
+    Images,
 )
 
 # Forms
@@ -99,7 +100,7 @@ class PicturesFormSet(BaseInlineFormSet):
                 'No se puede publicar noticia sin imagenes')
 
 
-class PhotosAdminInline(admin.TabularInline):
+class PhotosAdminInline(admin.StackedInline):
     model = Picture
     extra = 1
     formset = PicturesFormSet
@@ -116,5 +117,5 @@ class NoticeAdmin(admin.ModelAdmin):
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 admin.site.register(Section)
-
+admin.site.register(Images)
 admin.site.register(Suscriptor)

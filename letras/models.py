@@ -3,6 +3,7 @@
 #Django
 from django.contrib.auth.models import User
 from django.db import models
+from ckeditor.fields import RichTextField
 
 
 ROL_CHOICES = (
@@ -86,8 +87,9 @@ class Notice(models.Model):
 
     title = models.TextField('Titulo Noticia')
     lead = models.TextField('Lead Noticia', null=True, blank=True)
-    text = models.TextField('Texto Noticia')
+    text = RichTextField()
     video = models.URLField(max_length=200, blank=True)
+    podcast = models.FileField(upload_to = 'audios/', null = True, blank = True)
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -114,6 +116,7 @@ class Notice(models.Model):
     def principal_picture(self):
         """Return principal image url."""
         return self.pictures.filter(is_principal=True).last().route.url
+
 
 
 class Picture(models.Model):
@@ -144,6 +147,12 @@ class Picture(models.Model):
         get_latest_by = 'notice__created'
         ordering = ['-notice__created', '-notice__modified']
 
+class Images(models.Model):
+    title = models.CharField('Titulo de la imagen', max_length = 200)
+    route = models.FileField(upload_to = 'img/')
+
+    def __str__(self):
+        return self.route.url
 
 class Suscriptor(models.Model):
     """Class for suscriptors storage"""
