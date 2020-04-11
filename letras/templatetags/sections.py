@@ -15,7 +15,7 @@ def show_sections():
 
 @register.inclusion_tag('base/breaking_news.html')
 def show_breakings():
-    breakings = Notice.objects.all().order_by('created')
+    breakings = Notice.objects.all()[0:3]
     return {'breakings': breakings}
 
 

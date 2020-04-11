@@ -35,14 +35,19 @@
                                     <a class="item-meta-i"><i class="po po-clock"></i>{{notice.created|date:"d M"}}</a>
 
                                 </span>
-
                                 <div class="wp-caption aligncenter">
                                     <a href="{{notice.principal_picture}}" class="lightbox-photo" title="{{picture}}">
                                         <img src="{{notice.principal_picture}}" width="680" height="357" alt="" /></a>
-                                    <p class="wp-caption-text">{{picture.footer}}</p>
+                                    <p class="wp-caption-text">{%for picture_footer in notice.pictures.all  %} {{picture_footer.footer}} {% endfor %}</p>
                                 </div>
 
-                                <p>{{notice.text|linebreaks}}</p>
+                                {% if notice.podcast %}
+                                     <audio class ="btn  btn-block" controls>
+                                          <source src="{{notice.podcast.url}}" type="audio/mp3">
+                                     </audio>
+                                {% endif %}
+
+                                <p>{{notice.text| safe}}</p>
                                 {% if notice.video %}
                                 <div class="video-embed">
                                     <iframe width="820" height="615"
@@ -50,6 +55,7 @@
                                         allowfullscreen=""></iframe>
                                 </div>
                                 {% endif %}
+
 
 
 
@@ -67,7 +73,7 @@
                                 <h3>Compartir</h3>
                                 <div class="social-widget">
                                     <div class="social-squares">
-                                        <a href="https://www.facebook.com/sharer/sharer.php?u=http://letrasmedio.co/publication/{{notice.pk}}"
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u=http://letrasmedio.com/publicacion/{{notice.pk}}"
                                             target="_blank" class="hover-color-facebook"><i
                                                 class="fa fa-facebook"></i><span>--</span></a>
 

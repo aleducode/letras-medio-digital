@@ -10,7 +10,8 @@ from letras.models import (
     User,
     Section,
     Notice,
-    Picture
+    Picture,
+    Images,
 )
 
 # Forms
@@ -99,7 +100,7 @@ class PicturesFormSet(BaseInlineFormSet):
                 'No se puede publicar noticia sin imagenes')
 
 
-class PhotosAdminInline(admin.TabularInline):
+class PhotosAdminInline(admin.StackedInline):
     model = Picture
     extra = 1
     formset = PicturesFormSet
@@ -113,8 +114,22 @@ class NoticeAdmin(admin.ModelAdmin):
     search_fields = ('title', 'section__name', 'text', 'lead')
 
 
+@admin.register(Images)
+class ImagesAdmin(admin.ModelAdmin):
+    """Url generator for single image admin."""
+
+    list_display = ('title', 'url',)
+    list_display_links = ('title', )
+
+    search_fields = ('route', 'title')
+
+    def url(self, obj):
+        return obj
+
+    url.short_description = "url"
+
+
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 admin.site.register(Section)
-
 admin.site.register(Suscriptor)

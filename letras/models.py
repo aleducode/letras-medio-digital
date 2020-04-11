@@ -1,13 +1,18 @@
-"""Letras Models"""
+"""Letras Models."""
 
-#Django
+# Django
 from django.contrib.auth.models import User
 from django.db import models
+from django.conf import settings
+
+
+# Utils
+from ckeditor.fields import RichTextField
 
 
 ROL_CHOICES = (
     (1, 'Administrador'),
-   	(2, 'Columnista')
+    (2, 'Columnista')
 )
 
 PRIORIDAD_CHOICES = (
@@ -19,17 +24,18 @@ PRIORIDAD_CHOICES = (
 
 
 def user_directory_path(instance, filename):
-    """Route to storage user picture"""
+    """Route to storage user picture."""
     return 'user{0}/{1}'.format(instance.user.id, filename)
 
 
 def notices_directory_path(instance, filename):
-    """Route to storage notice(s) picture"""
+    """Route to storage notice(s) picture."""
     return 'notice{0}/{1}'.format(instance.notice.id, filename)
 
 
 class Profile(models.Model):
-    """Profile model that extens the db with other informations"""
+    """Profile model that extens the db with other informations."""
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     position = models.CharField('Cargo', max_length=30, blank=True)
     role = models.PositiveIntegerField(
@@ -51,12 +57,13 @@ class Profile(models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        """return username"""
+        """Return username."""
         return self.user.username
 
 
 class Section(models.Model):
-    """Notice sections"""
+    """Notice section."""
+
     name = models.CharField('Nombre Seccion', max_length=255)
     is_active = models.BooleanField(
         'Activa',
@@ -77,8 +84,12 @@ class Section(models.Model):
     order = models.PositiveIntegerField('Posición en pantalla')
 
     def __str__(self):
-        """return username"""
+        """Return username."""
         return self.name
+
+    class Meta:
+        verbose_name = 'Sección'
+        verbose_name_plural = 'Secciones'
 
 
 class Notice(models.Model):
@@ -86,8 +97,9 @@ class Notice(models.Model):
 
     title = models.TextField('Titulo Noticia')
     lead = models.TextField('Lead Noticia', null=True, blank=True)
-    text = models.TextField('Texto Noticia')
+    text = RichTextField()
     video = models.URLField(max_length=200, blank=True)
+    podcast = models.FileField(upload_to='audios/', null=True, blank=True)
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -105,9 +117,11 @@ class Notice(models.Model):
 
         get_latest_by = 'created'
         ordering = ['-created', '-modified']
+        verbose_name = 'Noticia'
+        verbose_name_plural = 'Noticias'
 
     def __str__(self):
-        """return notice's title."""
+        """Return notice's title."""
         return '{} | {}'.format(self.title, self.section)
 
     @property
@@ -118,6 +132,7 @@ class Notice(models.Model):
 
 class Picture(models.Model):
     """Picture model."""
+
     notice = models.ForeignKey(
         Notice,
         on_delete=models.CASCADE,
@@ -136,17 +151,35 @@ class Picture(models.Model):
         default='por: Letras Medio')
 
     def __str__(self):
-        """return notice name."""
+        """Return notice name."""
         return 'Notice:{}'.format(self.notice)
 
     class Meta:
-        """Meta option."""
         get_latest_by = 'notice__created'
         ordering = ['-notice__created', '-notice__modified']
 
 
+class Images(models.Model):
+    """Model por temporal images."""
+
+    title = models.CharField('Titulo de la imagen', max_length=200)
+    route = models.FileField(upload_to='img/')
+
+    def __str__(self):
+        """Return complente url."""
+        return '{}{}'.format(
+            settings.SITE_URL,
+            self.route.url
+        )
+
+    class Meta:
+        verbose_name = 'Generador de link para Imagen'
+        verbose_name_plural = 'Generador de link para Imagen'
+
+
 class Suscriptor(models.Model):
-    """Class for suscriptors storage"""
+    """Class for suscriptors storage."""
+
     name = models.CharField('Nombre Sucriptior', max_length=255)
     email = models.CharField('Correo', max_length=255)
     is_active = models.BooleanField(
@@ -155,5 +188,9 @@ class Suscriptor(models.Model):
     )
 
     def __str__(self):
-        """return suscriptor."""
+        """Return suscriptor."""
         return 'Suscriptior:{}'.format(self.name)
+
+    class Meta:
+        verbose_name = 'Suscritor'
+        verbose_name_plural = 'Suscritores'
