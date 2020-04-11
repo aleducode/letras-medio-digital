@@ -114,8 +114,22 @@ class NoticeAdmin(admin.ModelAdmin):
     search_fields = ('title', 'section__name', 'text', 'lead')
 
 
+@admin.register(Images)
+class ImagesAdmin(admin.ModelAdmin):
+    """Url generator for single image admin."""
+
+    list_display = ('title', 'url',)
+    list_display_links = ('title', )
+
+    search_fields = ('route', 'title')
+
+    def url(self, obj):
+        return obj
+
+    url.short_description = "url"
+
+
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 admin.site.register(Section)
-admin.site.register(Images)
 admin.site.register(Suscriptor)
