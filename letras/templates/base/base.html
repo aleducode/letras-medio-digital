@@ -21,7 +21,16 @@
     {% endblock head %}
     <title>{% block title %} Letras Medio {% endblock %} </title>
     <!-- Stylesheets -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-98432695-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
+      gtag('config', 'UA-98432695-2');
+    </script>
+    <script data-ad-client="ca-pub-3216167852873919" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <link rel="shortcut icon"
         href="https://scontent.feoh4-2.fna.fbcdn.net/v/t1.0-9/35403105_1818260618469742_4695542450268143616_n.png?_nc_cat=0&oh=368f220f635ac696e221b90399940dee&oe=5BAB436F">
     <link type="text/css" rel="stylesheet" href="{% static "base/css/reset.min.css" %}" />
