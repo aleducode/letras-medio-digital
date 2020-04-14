@@ -1,9 +1,6 @@
 
 {% extends 'base/base.html' %}
-
-
-
-
+{% load static %}
 
 {% block content %}
 
@@ -34,12 +31,17 @@
                     <div class="portus-main-content portus-main-content-s-4">
                         <div class="theiaStickySidebar">
                             <div class="portus-main-article-block">
-                               <center><h2>{{columnist.user.get_full_name}}</h2></center>
-                                
+                                {% if columnist.picture %}
+                                    <img class="center-block avatar img-circle img-thumbnail" src="{{columnist.picture.url}}" alt="{{columnist.picture}}" />
+                                {% else %}
+                                    <img class="center-block avatar img-circle img-thumbnail" src="{% static 'base/images/avatar_2x.png' %}" alt="{{profile.picture}}" />
+                                {% endif %}
+
+
+                               <center><h2>{{columnist.user.username}}</h2></center>
                                 <div class="ot-spacer spacer-3" data-spacer-color="#3b5998">
                                     <i class="fa fa-coffee"></i>
                                     <i class="fa fa-pencil"></i>
-                                    
                                     <strong style="font-size:16px;">Biografía</strong>
                                     <i class="fa fa-paperclip"></i>
                                     <i class="fa fa-user"></i>
@@ -54,10 +56,10 @@
                               #TODO: empty columns message
                             {% endcomment %}
 
-                                <center> <h3 id="accordion">Columnas Recientes</h3></center>
+                                {% if columns %}
+                                    <center> <h3 id="accordion">Columnas Recientes</h3></center>
 
-                                <div class="accordion">
-                                    {% if columns %}
+                                    <div class="accordion">
                                     {% for column in columns  %}
                                     <div>
                                         <a href="#">{{column.title}}</a>
@@ -69,8 +71,26 @@
                                     </div>
                                     {% endfor %}
                                     {% endif %}
+
+
                                    
                                 </div>
+                                {% if podcasts %}
+                                    <center> <h3 id="accordion">Podcasts Recientes</h3></center>
+
+                                    <div class="accordion">
+                                    {% for podcast in podcasts  %}
+                                    <div>
+                                        <a href="#">{{podcast.title}}</a>
+                                        <div>
+                                            <p>{{podcast.description | safe }}
+                                            </p>
+                                            <p><a href="{% url 'podcast' podcast.pk %}" class="button button-active">Escuchar</a></p>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    </div>
+                                {% endif %}
                                 <center><h3 id="social-icons">Más sobre @{{columnist.user.username}}</h3>
                                 
 
