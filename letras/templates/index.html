@@ -3,7 +3,6 @@
 {% block meta %}
 {% endblock meta %}
 {% block content %}
-
 <div id="content">
     <!-- BEGIN #portus-read-later -->
     <!-- BEGIN .wrapper -->
@@ -24,6 +23,7 @@
                                     <!-- <span><i class="po po-head"></i>{{top1_notice.user}}</span> -->
                                     <span ><i class="fa fa-calendar-o"></i>{{top1_notice.created|date:"d M"}}</span>
                                     <span><i class="fa fa-star"></i>{{top1_notice.section}}</span>
+                                    <span><i class="fa fa-user"></i>{{top1_notice.user.username}}</span>
                                 </span>
                             </span>
                         </a>
@@ -41,8 +41,9 @@
                             <span class="item-content">
                                 <strong class="item-article-title">{{notice.title}}</strong>
                                 <span class="item-meta">
-
                                     <span><i class="po po-clock"></i>{{notice.created|date:"d M"}}</span>
+                                    <span><i class="fa fa-user"></i>{{top1_notice.user.username}}</span>
+
                                 </span>
                             </span>
                         </a>
@@ -55,8 +56,23 @@
             </div>
             <!-- ENd .portus-main-content-panel -->
         </div>
+
         <!-- BEGIN .portus-main-content-panel -->
-        <!-- BEGIN .portus-main-content-panel -->
+        <!--CORONAVIRUS -->
+        <div class="paragraph-row portus-main-content-panel">
+						<div class="column12">
+                            <hr>
+                            <h2 class="text-center md-5">Coronavirus Hoy</h2>
+                            <hr>
+							<div class="block-category-list">
+                                <h3 class="item" style="color: #CB4335">Numero de casos {{total_casos}}</h3>
+                                <h3 class="item" style="color: #CB4335">Casos activos {{casos_activos}}</h3>
+                                <h3 class="item" style="color: #1ABC9C">Recuperados  {{recuperados}}</h3>
+                                <h3 class="item" style="color: #CB4335">Muertes {{muertes}}</h3>
+
+							</div>
+						</div>
+        </div>
         <div class="paragraph-row portus-main-content-panel">
             <div class="column12">
                 <div class="portus-main-content-s-block">
@@ -94,6 +110,10 @@
                                                             class="fa fa-calendar-o"></i>{{notice.created|date:"d M"}}</span>
                                                     <span class="item-meta-i">
                                                         <i class="fa fa-star"></i>{{notice.section}}</span>
+                                                    <span><i class="fa fa-user"></i>{{top1_notice.user.username}}</span>
+
+
+
                                                 </div>
                                                 <p>{{notice.lead}}</p>
                                                 <div class="item-helper-a">

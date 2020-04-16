@@ -5,21 +5,21 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.conf import settings
 
-
 # Utils
 from ckeditor.fields import RichTextField
-
-
+import PIL
+from PIL import Image
 ROL_CHOICES = (
     (1, 'Administrador'),
-    (2, 'Columnista')
+    (2, 'Columnista'),
+    (3, 'Podcaster'),
+    (4, 'Columnista - Podcaster')
 )
 
 PRIORIDAD_CHOICES = (
     (1, 'Top 1'),
     (2, 'Top 2'),
     (3, 'Normal'),
-    (4, 'Columna')
 )
 
 
@@ -60,6 +60,12 @@ class Profile(models.Model):
         """Return username."""
         return self.user.username
 
+    def save(self):
+        super(Profile, self).save()
+        picture = Image.open(self.picture)
+        picture = picture.resize((190,190), Image.ANTIALIAS)
+        picture.save(self.picture.path)
+
 
 class Section(models.Model):
     """Notice section."""
@@ -99,6 +105,7 @@ class Notice(models.Model):
     lead = models.TextField('Lead Noticia', null=True, blank=True)
     text = RichTextField()
     video = models.URLField(max_length=200, blank=True)
+    video_file = models.FileField(upload_to = 'video_files/', null = True, blank= True)
     podcast = models.FileField(upload_to='audios/', null=True, blank=True)
     user = models.ForeignKey(
         User,
@@ -106,8 +113,8 @@ class Notice(models.Model):
         null=True,
         blank=True
     )
-    section = models.ForeignKey(Section, on_delete=models.CASCADE)
-    priority = models.PositiveIntegerField(choices=PRIORIDAD_CHOICES)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE, verbose_name = 'Seccion')
+    priority = models.PositiveIntegerField(choices=PRIORIDAD_CHOICES, verbose_name='Prioridad')
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
@@ -148,7 +155,7 @@ class Picture(models.Model):
         max_length=500,
         null=True,
         blank=True,
-        default='por: Letras Medio')
+        default='Imaegen por: Letras Medio')
 
     def __str__(self):
         """Return notice name."""
@@ -194,3 +201,36 @@ class Suscriptor(models.Model):
     class Meta:
         verbose_name = 'Suscritor'
         verbose_name_plural = 'Suscritores'
+
+
+class Podcast(models.Model):
+    title = models.CharField(max_length=200, verbose_name = 'Titulo del podcast')
+    picture = models.FileField(upload_to = 'img_podcasts', default = 'img', verbose_name ='Imagen')
+    user = models.ForeignKey(User,on_delete=models.CASCADE, verbose_name = 'Usuario')
+    podcast = models.FileField(upload_to ='podcasts/', verbose_name = 'Audio Podcast')
+    description = RichTextField(verbose_name= 'Descripcion')
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+class Columns(models.Model):
+    """Notice model."""
+    title = models.TextField('Titulo Columna')
+    text = RichTextField(verbose_name='Contenido Columna')
+    image = models.ImageField(upload_to = "img_columns", default = "img", verbose_name= 'Imagen')
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        verbose_name = 'Usuario'
+    )
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Columna"
+        verbose_name_plural = "Columnas"
+

@@ -30,24 +30,24 @@
 
       gtag('config', 'UA-98432695-2');
     </script>
+    <!-- Script google analytics -->
     <script data-ad-client="ca-pub-3216167852873919" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <link rel="shortcut icon"
-        href="https://scontent.feoh4-2.fna.fbcdn.net/v/t1.0-9/35403105_1818260618469742_4695542450268143616_n.png?_nc_cat=0&oh=368f220f635ac696e221b90399940dee&oe=5BAB436F">
-    <link type="text/css" rel="stylesheet" href="{% static "base/css/reset.min.css" %}" />
-    <link type="text/css" rel="stylesheet" href="{% static "base/css/portus.min.css" %}" />
-    <link type="text/css" rel="stylesheet" href="{% static "base/css/font-awesome.min.css" %}" />
-    <link type="text/css" rel="stylesheet" href="{% static "base/css/themify-icons.min.css" %}" />
-    <link type="text/css" rel="stylesheet" href="{% static "base/css/weather-icons.min.css" %}" />
-    <link type="text/css" rel="stylesheet" href="{% static "base/css/bootstrap.min.css" %}" />
-    <link type="text/css" rel="stylesheet" href="{% static "base/css/owl.carousel.min.css" %}" />
-    <link type="text/css" rel="stylesheet" href="{% static "base/css/main-stylesheet.min.css" %}" />
-    <link type="text/css" rel="stylesheet" href="{% static "base/css/ot-lightbox.min.css" %}" />
-    <link type="text/css" rel="stylesheet" href="{% static "base/css/shortcodes.min.css" %}" />
-    <link type="text/css" rel="stylesheet" href="{% static "base/css/responsive.min.css" %}" />
-    <link type="text/css" rel="stylesheet" href="{% static "base/css/dat-menu.min.css" %}" />
-    <link type="text/css" rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&amp;subset=latin,latin-ext" />
-    <link type="text/css" rel="stylesheet" href='https://fonts.googleapis.com/css?family=Montserrat:400,700' />
+    <!-- Css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="{% static 'base/css/reset.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'base/css/portus.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'base/css/font-awesome.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'base/css/themify-icons.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'base/css/weather-icons.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'base/css/bootstrap.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'base/css/owl.carousel.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'base/css/main-stylesheet.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'base/css/ot-lightbox.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'base/css/shortcodes.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'base/css/responsive.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'base/css/dat-menu.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&amp;subset=latin,latin-ext" />
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700" />
     {% block head_css %}
     {% endblock head_css %}
 
@@ -80,7 +80,7 @@
                         <!-- <<li><a href="blog.html">Blog page</a></li>
 							<li><a href="read-later.html">Read later feature</a></li>-->
                         <li><a href="">Quienes Somos</a></li>
-                        <li><a href="">Portafolio de Servicios</a></li>
+                        <li><a href="">Politicas de Privacidad</a></li>
                         <li><a href="">Contactenos</a></li>
 
                     </ul>
@@ -159,7 +159,25 @@
             <!-- END #header -->
         </div>
 
+   <!--     <div class="paragraph-row portus-main-content-panel">
+						<div class="column12">
+							<div class="block-category-list">
+                                <a href="category.html" class="item"><i class="ti ti-microphone"></i><strong>Podcasts</strong></a>
+								<a href="category.html" class="item"><i class="ti ti-user"></i><strong>Perfiles</strong></a>
+								<a href="category.html" class="item"><i class="ti ti-tablet"></i><strong>Tablets</strong></a>
+								<a href="category.html" class="item"><i class="ti ti-desktop"></i><strong>Desktops</strong></a>
+								<a href="category.html" class="item"><i class="ti ti-headphone"></i><strong>Audio</strong></a>
+								<a href="category.html" class="item"><i class="ti ti-game"></i><strong>Gaming</strong></a>
+								<a href="category.html" class="item"><i class="ti ti-camera"></i><strong>Photo &amp; Video</strong></a>
+								<a href="category.html" class="item"><i class="ti ti-car"></i><strong>Car tech</strong></a>
+								<a href="category.html" class="item"><i class="ti ti-location-pin"></i><strong>Navigation</strong></a>
+								<a href="category.html" class="item"><i class="ti ti-time"></i><strong>Smartwatches</strong></a>
+								<a href="category.html" class="item"><i class="ti ti-mouse"></i><strong>Peripherals</strong></a>
+							</div>
+						</div>-->
+					<!-- ENd .portus-main-content-panel -->
 
+					</div>
         {% block content %}
 
         {% endblock content %}
@@ -233,17 +251,17 @@
         <!-- END .boxed -->
     </div>
     <!-- Scripts -->
-    <script type="text/javascript" src="{% static "base/jscript/jquery-latest.min.js"%}"></script>
-    <script type="text/javascript" src="{% static "base/jscript/bootstrap.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "base/jscript/owl.carousel.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "base/jscript/theia-sticky-sidebar.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "base/jscript/parallax.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "base/jscript/modernizr.custom.50878.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "base/jscript/iscroll.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "base/jscript/dat-menu.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "base/jscript/theme-scripts.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "base/jscript/ot-lightbox.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "base/jscript/api.js" %}"></script>
+    <script type="text/javascript" src="{% static 'base/jscript/jquery-latest.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'base/jscript/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'base/jscript/owl.carousel.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'base/jscript/theia-sticky-sidebar.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'base/jscript/parallax.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'base/jscript/modernizr.custom.50878.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'base/jscript/iscroll.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'base/jscript/dat-menu.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'base/jscript/theme-scripts.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'base/jscript/ot-lightbox.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'base/jscript/api.js' %}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- <script type="text/javascript" src="{% static "base/jscript/sweetalert.min.js" %}"></script> -->
 
