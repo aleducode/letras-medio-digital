@@ -155,7 +155,7 @@ class Picture(models.Model):
         max_length=500,
         null=True,
         blank=True,
-        default='Imaegen por: Letras Medio')
+        default='Imagen por: Letras Medio')
 
     def __str__(self):
         """Return notice name."""

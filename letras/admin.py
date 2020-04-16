@@ -3,7 +3,8 @@
 # Django
 from django.contrib import admin
 
-#Import_export
+# Import_export
+from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 # Models
 from letras.models import (
@@ -21,7 +22,6 @@ from letras.models import (
 # Forms
 from django import forms
 from django.forms.models import BaseInlineFormSet
-
 
 class PicturesFormSet(BaseInlineFormSet):
     """Form set to ensure principal picture."""
@@ -43,6 +43,13 @@ class PicturesFormSet(BaseInlineFormSet):
             raise forms.ValidationError(
                 'No se puede publicar noticia sin imagenes')
 
+class PhotoResource(resources.ModelResource):
+    class Meta:
+        model=Picture
+
+@admin.register(Picture)
+class PhotoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = PhotoResource
 
 class PhotosAdminInline(admin.StackedInline):
     model = Picture
@@ -50,19 +57,21 @@ class PhotosAdminInline(admin.StackedInline):
     formset = PicturesFormSet
 
 
+class NoticeResource(resources.ModelResource):
+    class Meta:
+        model = Notice
 
 @admin.register(Notice)
-class NoticeAdmin(admin.ModelAdmin):
+class NoticeAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class= NoticeResource
     inlines = [PhotosAdminInline]
     list_display = ('title', 'section', 'priority')
     list_filter = ['section__name', 'priority']
     search_fields = ('title', 'section__name', 'text', 'lead')
 
-
 @admin.register(Columns)
 class ColumnsAdmin(admin.ModelAdmin):
     list_display = ('title', 'user')
-
 
 @admin.register(Images)
 class ImagesAdmin(admin.ModelAdmin):
@@ -77,6 +86,7 @@ class ImagesAdmin(admin.ModelAdmin):
         return obj
 
     url.short_description = "url"
+
 
 admin.site.register(Podcast)
 admin.site.register(Section)
