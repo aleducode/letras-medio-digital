@@ -1,0 +1,74 @@
+{%extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="jumbotron media mt-0" style="background: #1c1e1f">
+  <img src="{{podcast.picture.url}}" class="align-self-start ml-5 mr-5 pl-5" alt="">
+  <div class="media-body">
+    <p class="text-white">{{podcast.created | date}}</p>
+    <h1 class="mt-0 text-white">{{podcast.title}}</h1>
+
+    <audio controls class="btn btn-block">
+      <source src="{{podcast.podcast.url}}" type="audio/mp3">
+    </audio>
+        <p class="cke_contents">{{podcast.description | safe}}</p>
+  </div>
+</div>
+
+<div class="wrapper">
+					<div class="paragraph-row portus-main-content-panel">
+						<div class="column12">
+
+								<!-- BEGIN .portus-main-content -->
+								<div class="portus-main-content portus-main-content-s-2">
+									<div class="theiaStickySidebar">
+
+										<!-- BEGIN .portus-content-block -->
+										<div class="portus-content-block">
+											<div class="portus-content-title">
+												<h2> Otros Podcasts</h2>
+											</div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+
+{% if more_podcasts %}
+    {%for podcast in more_podcasts %}
+					<div class="paragraph-row portus-main-content-panel">
+						<div class="column12">
+							<div class="portus-main-content-s-block">
+
+								<!-- BEGIN .portus-main-content -->
+								<div class="portus-main-content portus-main-content-s-2">
+									<div class="theiaStickySidebar">
+											<div class="article-blog-default">
+
+												<div class="item">
+													<div class="item-header item-header-hover">
+														<a href="{% url 'podcast' podcast.pk%}"><img src="{{podcast.picture.url}}" alt="" /></a>
+													</div>
+													<div class="item-content">
+														<h3><a href="{% url 'podcast' podcast.pk%}">{{podcast.title}}</a></h3>
+														<div class="item-meta">
+															<a href="{% url 'perfil' podcast.user.pk%}" class="item-meta-i"><i class="po po-head"></i>{{podcast.user.username}}</a>
+															<span class="item-meta-i"><i class="po po-clock"></i>{{podcast.created | date}}</span>
+														</div>
+														<p>{{podcast.description | safe |truncatechars:300}}</p>
+														<div class="item-helper-a">
+                                                           <h3> <a href="{% url 'podcast' podcast.pk%}" class="item"><i class="ti ti-microphone"></i><strong>  Escuchar</strong></a> </h3>
+                                                        </div>
+													</div>
+												</div>
+                                                <div class="item"></div>
+											</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    {% endfor %}
+{% endif %}
+    </div>
+
+{% endblock %}

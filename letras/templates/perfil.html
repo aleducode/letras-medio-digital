@@ -1,0 +1,187 @@
+
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<style type="text/css">
+    .roundpic {
+        
+        height: 50px !important;
+        width: 100px !important;
+        border: solid 2px #0099cc;
+        border-radius: 100%;
+    }
+    </style>
+<div id="content">
+    <!-- BEGIN #portus-read-later -->
+   
+    
+    <!-- BEGIN .wrapper -->
+    <div class="wrapper">
+
+        <!-- BEGIN .portus-main-content-panel -->
+        <div class="paragraph-row portus-main-content-panel">
+            <div class="column12">
+                <div class="portus-main-content-s-block">
+
+                    <!-- BEGIN .portus-main-content -->
+                    <div class="portus-main-content portus-main-content-s-4">
+                        <div class="theiaStickySidebar">
+                            <div class="portus-main-article-block">
+                                {% if columnist.picture %}
+                                    <img class="center-block avatar img-circle img-thumbnail" src="{{columnist.picture.url}}" alt="{{columnist.picture}}" />
+                                {% else %}
+                                    <img class="center-block avatar img-circle img-thumbnail" src="{% static 'base/images/avatar_2x.png' %}" alt="{{profile.picture}}" />
+                                {% endif %}
+
+
+                               <center><h2>{{columnist.user.username}}</h2></center>
+                                <div class="ot-spacer spacer-3" data-spacer-color="#3b5998">
+                                    <i class="fa fa-coffee"></i>
+                                    <i class="fa fa-pencil"></i>
+                                    <strong style="font-size:16px;">Biografía</strong>
+                                    <i class="fa fa-paperclip"></i>
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <center><p>{{columnist.position}}</p></center>
+                                <center><p>{{columnist.biography}}</p></center>
+                                <div class="ot-spacer spacer-3" data-spacer-color="#3b5998">
+                                   
+                                </div>
+
+                            {% comment %}
+                              #TODO: empty columns message
+                            {% endcomment %}
+
+                                {% if columns %}
+                                    <center> <h3 id="accordion">Columnas Recientes</h3></center>
+
+                                    <div class="accordion">
+                                    {% for column in columns  %}
+                                    <div>
+                                        <a href="#">{{column.title}}</a>
+                                        <div>
+                                            <p>{{column.text | safe | truncatechars:500}}
+                                            </p>
+                                            <p><a href="{% url 'column' column.pk %}" class="button button-active">Leer</a></p>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
+
+
+                                   
+                                </div>
+                                {% if podcasts %}
+                                    <center> <h3 id="accordion">Podcasts Recientes</h3></center>
+
+                                    <div class="accordion">
+                                    {% for podcast in podcasts  %}
+                                    <div>
+                                        <a href="#">{{podcast.title}}</a>
+                                        <div>
+                                            <p>{{podcast.description | safe }}
+                                            </p>
+                                            <p><a href="{% url 'podcast' podcast.pk %}" class="button button-active">Escuchar</a></p>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    </div>
+                                {% endif %}
+                                <center><h3 id="social-icons">Más sobre @{{columnist.user.username}}</h3>
+                                
+
+                                <p>
+                                    {% if columnist.twitter %}
+                                    <a href="{{columnist.twitter}}" target="_blank" class="social-icon social-twitter soc-bef hover-color-twitter">
+                                        <i class="fa fa-twitter"></i>
+                                        <strong>Twitter</strong>
+                                        <span>Seguir</span>
+                                    </a>
+                                    {% endif %}
+                                    {% if columnist.facebook %}
+                                    <a href="{{columnist.facebook}}" target="_blank" class="social-icon social-facebook soc-bef hover-color-facebook">
+                                        <i class="fa fa-facebook"></i>
+                                        <strong>Facebook</strong>
+                                        <span>Like</span>
+                                    </a>
+                                    {% endif %}
+                                    {% if columnist.instagram %}
+                                    <a href="{{columnist.instagram}}" target="_blank" class="social-icon social-instagram soc-bef hover-color-instagram">
+                                            <i class="fa fa-instagram"></i>
+                                            <strong>Instagram</strong>
+                                            <span>Seguir</span>
+                                        </a>
+                                        {% endif %}
+                                        {% if columnist.linkedin %}
+                   
+                                <a href="{{columnist.linkedin}}" target="_blank" class="social-icon social-linkedin soc-bef hover-color-linkedin">
+                                    <i class="fa fa-linkedin"></i>
+                                    <strong>LinkedIn</strong>
+                                    <span>Conectar</span>
+                                </a>
+                                {% endif %}
+
+                                   
+                                </p>
+
+                                
+
+                            </center>
+                 
+                            </div>
+
+                        </div>
+                    <!-- END .portus-main-content -->
+                    </div>
+
+                    <aside class="sidebar portus-sidebar-large">
+                        <div class="theiaStickySidebar">
+
+                            <!-- BEGIN .widget -->
+                            <div class="widget">
+
+                                <h3>Otros columnistas</h3>
+                                <div class="w-twitter-feed">
+                                    {% if other_columnist %}
+                                    {% for profile in other_columnist %}
+                                    <div class="item">
+                                        <a href="{% url 'columnist' profile.user.pk %}" class="item-photo">
+                                            <img class="center-block roundpic" src="{{profile.picture.url}}" alt="{{profile.picture}}" />
+                                        </a>
+                                        <div class="item-content">
+                                            <h4><a href="{% url 'columnist' profile.user.pk %}">{{profile.user.get_full_name}}</a></h4>
+                                            <a href="#" class="twitter-i-link">@{{profile.user.username}}</a>
+                                            <p>{{profile.position}}</p>
+                                            <div class="item-meta">
+                                                <a href="{% url 'columnist' profile.user.pk %}" class="item-meta-i"><i class="fa fa-search"></i>Ver Columnas</a>
+                                                <a href="{{profile.twitter}}" class="item-meta-i"><i class="fa fa-twitter"></i>Seguir</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
+                                  
+                                </div>
+                                
+
+                            <!-- END .widget -->
+                            </div>
+
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        <!-- ENd .portus-main-content-panel -->
+        </div>
+
+    <!-- END .wrapper -->
+    </div>
+    
+<!-- BEGIN #content -->
+</div>
+{% endblock%}

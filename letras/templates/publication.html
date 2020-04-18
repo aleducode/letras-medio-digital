@@ -31,6 +31,7 @@
                                 <p class="portus-main-article-intro">{{notice.lead}}</p>
 
                                 <span class="portus-main-article-meta">
+                                    <a class="item-meta-i"><i class="fa fa-user"></i>{{notice.user.username}}</a>
                                     <a class="item-meta-i"><i class="fa fa-star"></i>{{notice.section}}</a>
                                     <a class="item-meta-i"><i class="po po-clock"></i>{{notice.created|date:"d M"}}</a>
 
@@ -46,7 +47,14 @@
                                           <source src="{{notice.podcast.url}}" type="audio/mp3">
                                      </audio>
                                 {% endif %}
-
+                                {% if notice.video_file %}
+                                    <div class="video-embed">
+                                        <iframe width="820" height="615"
+                                            src="{{notice.video_file.url}}" frameborder="0"
+                                            allowfullscreen="">
+                                        </iframe>
+                                </div>
+                                {% endif %}
                                 <p>{{notice.text| safe}}</p>
                                 {% if notice.video %}
                                 <div class="video-embed">

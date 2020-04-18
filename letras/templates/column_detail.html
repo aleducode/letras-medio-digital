@@ -17,12 +17,13 @@
                     <div class="portus-content-block">
                         <div class="portus-content-title">
                             <h2>{{column.title}}</h2>
-                            <a href="{%url 'columnist' column.user.pk %}" class="right set-this-dotted">Regresar</a>
+                            <a href="{% url 'opinion' %}" class="right set-this-dotted">Regresar</a>
                         </div>
-                        <p>Por: @{{column.user}}</p>
+                        <a href="{% url 'perfil' column.user.pk %}"><i class="po po-head"></i>Por: @{{column.user}}</a>
+                        <hr>
                        
                         <div class="portus-main-article-block">
-                           {{column.text|linebreaks}}
+                           {{column.text|safe }}
                         </div>
                     </div>
 

@@ -9,6 +9,14 @@
     {{section.name}}
 </a>
 </li>
+{%elif section.name == 'Podcast' %}
+<li style="background-color: {{section.color_background|default_if_none:"transparent"}};">
+    <a href="{% url 'podcasts'  %}"
+    style="color:{{section.color_text|default_if_none:"white"}}">
+    {{section.name}}
+</a>
+</li>
+
 {%elif section.is_active%}
 <li style="background-color: {{section.color_background|default_if_none:"transparent"}};">
     <a href="{% url 'section' section.pk %}"

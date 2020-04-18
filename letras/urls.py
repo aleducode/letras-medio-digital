@@ -29,13 +29,27 @@ urlpatterns = [
         view=views.create_suscriptor,
         name='ajax_suscriptor'),
     path(
-        route='columnista/<int:user>',
+        route='perfil/<int:user>',
         view=views.ColumnView.as_view(),
-        name='columnist'),
+        name='perfil'),
+
     path(
         route='columna/<int:pk>',
         view=views.ColumnDetailView.as_view(),
         name='column'),
+    path(
+        route='podcast/<int:pk>',
+        view =views.PodcastView.as_view(),
+        name='podcast'
+    ),
+    path(
+        route='podcasts/',
+        view=views.PodcastList.as_view(),
+        name='podcasts'
+    ),
+    path('debug_error/', views.trigger_error),
+
+
 
 
 ]

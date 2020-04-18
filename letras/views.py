@@ -4,16 +4,19 @@
 from django.shortcuts import render, redirect
 from django.views.generic import (
     DetailView, FormView,
-    TemplateView,
+    TemplateView, ListView
 )
+import requests
+import json
 from django.urls import reverse_lazy
 from django.db.models import Q
 from django.http import HttpResponse
-
+from covid.utils import *
 # Models
 from letras.models import (
     Notice, Picture,
-    Profile, Suscriptor
+    Profile, Suscriptor,
+    Podcast, Columns
 )
 from letras.forms import SuscriptorsForm
 # Utils
@@ -31,7 +34,6 @@ class IndexView(SweetifySuccessMixin, FormView):
     def get_context_data(self, **kwargs):
         """Add notices to context."""
         context = super().get_context_data(**kwargs)
-
         # Top notices
         top_one = Notice.objects.filter(priority=1)
         context['top1_notice'] = top_one.first() if top_one.exists() else None
@@ -39,6 +41,11 @@ class IndexView(SweetifySuccessMixin, FormView):
             priority=2).order_by('-created')
         context['notices'] = Notice.objects.filter(
             priority=3).order_by('-created')
+        #Contagiados en tiempo real Coronavirus
+        context['total_casos'] = total_cases()
+        context['casos_activos'] = active_cases()
+        context['recuperados'] = total_recovered()
+        context['muertes'] = total_deaths()
 
         return context
 
@@ -66,15 +73,6 @@ class PublicationView(DetailView):
         return context
 
 
-class ColumnDetailView(DetailView):
-    """Column detail."""
-
-    template_name = 'column_detail.html'
-    pk_url_kwarg = 'pk'
-    queryset = Notice.objects.all()
-    context_object_name = 'column'
-
-
 class SectionView(TemplateView):
     """Section Generic viewer."""
 
@@ -100,14 +98,21 @@ class OpinionView(TemplateView):
         #normal context without override it
         context = super().get_context_data(**kwargs)
         #section information
-        context['comlumnists'] = Profile.objects.filter(
-            role=2).order_by('-created')
+        context['columns'] = Columns.objects.all()
+
         return context
 
+class ColumnDetailView(DetailView):
+    """Column detail."""
+
+    template_name = 'column_detail.html'
+    pk_url_kwarg = 'pk'
+    queryset = Columns.objects.all()
+    context_object_name = 'column'
 
 class ColumnView(DetailView):
     """Section opinion View."""
-    template_name = 'column.html'
+    template_name = 'perfil.html'
     slug_url_kwarg = 'user'
     slug_field = 'user'
     queryset = Profile.objects.all()
@@ -115,11 +120,33 @@ class ColumnView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['columns'] = Notice.objects.filter(
-            user=self.kwargs['user'], priority=4).order_by('-created')
+        context['columns'] = Columns.objects.all()[0:3]
+        context['podcasts'] = Podcast.objects.filter(user=self.kwargs['user']).order_by('-created')[0:3]
         context['other_columnist'] = Profile.objects.filter(
-            role=2).order_by('-created')
+            role=2).exclude(user = self.kwargs['user'] ).order_by('-created')
         return context
+
+
+class PodcastView(DetailView):
+    template_name= 'podcast_detail.html'
+    queryset = Podcast.objects.all()
+    contex_object_name = 'podcast'
+
+    def get_context_data(self, **kwargs):
+        contex = super(PodcastView, self).get_context_data(**kwargs)
+        contex['more_podcasts'] = Podcast.objects.exclude( pk = self.kwargs['pk'])
+        return contex
+
+class PodcastList(ListView):
+    paginate_by = 4
+    model = Podcast
+    template_name = 'podcast_list.html'
+
+
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
+
 
 
 def create_suscriptor(request):

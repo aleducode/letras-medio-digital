@@ -7,7 +7,7 @@
 		margin-top: 25px;
 		height: 150px;
 		width: 150px;
-		border: solid 2px #0099cc;
+		border: solid 2px ;
 		border-radius: 100%;
 	}
 	</style>
@@ -61,19 +61,17 @@
 						<div class="theiaStickySidebar">
 							<div class="portus-content-block">
 								<div class="portus-content-title">
-									<h2>Columnistas</h2>
+									<h2>Columnas</h2>
 
                                 </div>
-                                {% if comlumnists%}
-
-								{%for columnist in comlumnists|slice:":4" %}
+                                {% if columns%}
+								{%for columns in columns %}
 								<div class="col-md-3 col-sm-12 col-xs-12" align="center">
-									<img class="center-block roundpic" src="{{columnist.picture.url}}" />
-
-									<h4 style="padding-top: 4px;padding-bottom: 0px">{{columnist.user.get_full_name}}</h4>
-									<span style="font-size: 17px">{{columnist.user.position}}</span>
-									<h1 style="font-size: 14px;padding-top: 0px">{{columnist.user.email}}</h1>
-									<a href="{% url 'columnist' columnist.user.pk %}" class="button">Ver Columnas</a>
+									<img class="center-block roundpic" src="{{columns.image.url}}" />
+									<h3 style="padding-top: 5px;padding-bottom: 0px">{{columns.title}}</h3>
+									<span style="font-size: 15px">Por: {{columns.user.username}}</span>
+									<p class = "text-justify" style="font-size: 16px;padding-top: 0px">{{columns.text | safe | truncatechars:200}}</p>
+									<a href="{% url 'column' columns.pk %}" class="button">Ver Columna</a>
 
 								</div>
                                 {%endfor%}

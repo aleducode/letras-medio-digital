@@ -3,6 +3,9 @@
 # Django
 from django.contrib import admin
 
+# Import_export
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 # Models
 from letras.models import (
     Profile,
@@ -12,72 +15,13 @@ from letras.models import (
     Notice,
     Picture,
     Images,
+    Podcast,
+    Columns,
 )
 
 # Forms
 from django import forms
 from django.forms.models import BaseInlineFormSet
-
-
-@admin.register(Profile)
-class ProfileAdmin(admin.ModelAdmin):
-    """Profile admin."""
-
-    list_display = ('pk', 'user', 'role', 'position', 'picture')
-    list_display_links = ('user', 'position')
-
-    search_fields = (
-        'user__email',
-        'user__first_name'
-    )
-    list_filter = (
-        'created',
-        'modified',
-        'user__is_active',
-    )
-    fieldsets = (
-        ('Profile', {
-            'fields': (
-                ('user', 'picture'),
-            )
-        }),
-        ('Extra Info', {
-            'fields': (
-                ('position', 'role'),
-                ('biography'),
-            )
-        }),
-        ('Social Network', {
-            'fields': (
-                ('facebook'),
-                ('instagram'),
-                ('twitter'),
-                ('linkedin'),
-            )
-        }),
-        ('Metadata', {
-            'fields': (
-                ('created', 'modified'),
-
-            )
-        }),
-    )
-    readonly_fields = ('created', 'modified')
-
-
-class ProfileInLine(admin.StackedInline):
-    """Profile inline admin for users."""
-
-    model = Profile
-    can_delete = False
-    verbose_name_plural = 'profiles'
-
-
-class UserAdmin(admin.ModelAdmin):
-    inlines = (ProfileInLine,)
-    model = User
-    list_display = ('username', 'email', 'profile', 'is_superuser')
-
 
 class PicturesFormSet(BaseInlineFormSet):
     """Form set to ensure principal picture."""
@@ -99,6 +43,13 @@ class PicturesFormSet(BaseInlineFormSet):
             raise forms.ValidationError(
                 'No se puede publicar noticia sin imagenes')
 
+class PhotoResource(resources.ModelResource):
+    class Meta:
+        model=Picture
+
+@admin.register(Picture)
+class PhotoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = PhotoResource
 
 class PhotosAdminInline(admin.StackedInline):
     model = Picture
@@ -106,20 +57,28 @@ class PhotosAdminInline(admin.StackedInline):
     formset = PicturesFormSet
 
 
+class NoticeResource(resources.ModelResource):
+    class Meta:
+        model = Notice
+
 @admin.register(Notice)
-class NoticeAdmin(admin.ModelAdmin):
+class NoticeAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class= NoticeResource
     inlines = [PhotosAdminInline]
     list_display = ('title', 'section', 'priority')
     list_filter = ['section__name', 'priority']
     search_fields = ('title', 'section__name', 'text', 'lead')
 
+@admin.register(Columns)
+class ColumnsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'user')
 
 @admin.register(Images)
 class ImagesAdmin(admin.ModelAdmin):
     """Url generator for single image admin."""
 
     list_display = ('title', 'url',)
-    list_display_links = ('title', )
+    list_display_links = ('title',)
 
     search_fields = ('route', 'title')
 
@@ -129,7 +88,7 @@ class ImagesAdmin(admin.ModelAdmin):
     url.short_description = "url"
 
 
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
+admin.site.register(Podcast)
 admin.site.register(Section)
 admin.site.register(Suscriptor)
+admin.site.register(Profile)
