@@ -1,2 +1,2 @@
 # 'Letras'
-Colombian Digital Newspaper
+News page

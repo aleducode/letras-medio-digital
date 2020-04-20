@@ -96,6 +96,7 @@ class Section(models.Model):
     class Meta:
         verbose_name = 'Sección'
         verbose_name_plural = 'Secciones'
+        ordering = ['-order']
 
 
 class Notice(models.Model):

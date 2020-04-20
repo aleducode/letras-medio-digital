@@ -12,6 +12,8 @@ media
 letrasmedio/settings.py
 letrasmedio/settings_prod.py
 .vscode/
+audio.js
+i_files
 ### Django.Python Stack ###
 # Byte-compiled / optimized / DLL files
 *.py[cod]
