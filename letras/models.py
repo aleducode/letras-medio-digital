@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.conf import settings
 
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 # Utils
 from ckeditor.fields import RichTextField
 import PIL
@@ -96,7 +99,7 @@ class Section(models.Model):
     class Meta:
         verbose_name = 'Sección'
         verbose_name_plural = 'Secciones'
-        ordering = ['-order']
+
 
 
 class Notice(models.Model):
@@ -235,3 +238,20 @@ class Columns(models.Model):
         verbose_name = "Columna"
         verbose_name_plural = "Columnas"
 
+@receiver(post_save, sender =Notice)
+def change_notice(sender,instance, **kwargs):
+    priority = instance.priority
+    ult_priority = Notice.objects.filter(priority=1)
+    ult_prioritytwo = Notice.objects.filter(priority=2)
+
+
+    if  priority == 1:
+        if ult_priority.count() > 1 and ult_priority:
+            N= ult_priority.last()
+            N.priority = 2
+            N.save()
+
+    if ult_prioritytwo.count() >= 5:
+        ult_notice = ult_prioritytwo.last()
+        ult_notice.priority = 3
+        ult_notice.save()

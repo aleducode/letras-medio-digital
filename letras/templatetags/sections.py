@@ -9,7 +9,7 @@ from letras.models import Section, Notice
 register = template.Library()
 @register.inclusion_tag('base/sections.html')
 def show_sections():
-    sections = Section.objects.filter(is_active=True)
+    sections = Section.objects.filter(is_active=True).order_by('order')
     return {'sections': sections}
 
 
