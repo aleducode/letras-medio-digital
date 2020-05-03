@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:fix" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="178c543a-757f-4ebf-9d75-66d865c04660" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/funcionalities" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="feature/funcionalities" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_USER" value="aleducode" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_NAME" value="letras-medio-digital" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/aleducode/letras-medio-digital.git" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1aS4kF9HzaJfV5n0yhUDH1d37kc" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../letras-medio-produccion" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager" selected="Python.utils">
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="letras-medio-digital" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3.6" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/covid" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/covid/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="utils" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="letras-medio-digital" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3.6" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/covid" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/covid/utils.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.utils" />
+        <item itemvalue="Python.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="178c543a-757f-4ebf-9d75-66d865c04660" name="Default Changelist" comment="" />
+      <created>1586715802053</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586715802053</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Added Funcionalities">
+      <created>1587073217019</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1587073217019</updated>
+    </task>
+    <task id="LOCAL-00002" summary="bugs fixed coronavirus count, news position">
+      <created>1588183817288</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1588183817289</updated>
+    </task>
+    <task id="LOCAL-00003" summary="bugs fixed coronavirus count, news position">
+      <created>1588183919739</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1588183919739</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Added Funcionalities" />
+    <MESSAGE value="bugs fixed coronavirus count, news position" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugs fixed coronavirus count, news position" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="141" y="41" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587076642415">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="141" y="41" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1587076642415" />
+    <state x="416" y="132" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587067979927">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="416" y="132" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1587067979927" />
+    <state x="345" y="12" width="666" height="741" key="#test" timestamp="1586907332941">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="345" y="12" width="666" height="741" key="#test/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1586907332941" />
+    <state x="345" y="12" width="666" height="741" key="#utils" timestamp="1586907325754">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="345" y="12" width="666" height="741" key="#utils/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1586907325754" />
+    <state x="165" y="12" width="1199" height="741" key="CommitChangelistDialog2" timestamp="1588183919273">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="165" y="12" width="1199" height="741" key="CommitChangelistDialog2/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1588183919273" />
+    <state x="100" y="98" width="1166" height="570" maximized="true" key="DiffContextDialog" timestamp="1587075792779">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="100" y="98" width="1166" height="570" maximized="true" key="DiffContextDialog/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1587075792779" />
+    <state x="466" y="141" width="424" height="484" key="FileChooserDialogImpl" timestamp="1588184633893">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="466" y="141" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1588184633893" />
+    <state x="399" y="252" width="558" height="262" key="Github.CreatePullRequestDialog" timestamp="1587073048405">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="399" y="252" width="558" height="262" key="Github.CreatePullRequestDialog/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1587073048405" />
+    <state width="1343" height="184" key="GridCell.Tab.0.bottom" timestamp="1588184869941">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1343" height="184" key="GridCell.Tab.0.bottom/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1588184869941" />
+    <state width="1343" height="184" key="GridCell.Tab.0.center" timestamp="1588184869941">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1343" height="184" key="GridCell.Tab.0.center/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1588184869941" />
+    <state width="1343" height="184" key="GridCell.Tab.0.left" timestamp="1588184869941">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1343" height="184" key="GridCell.Tab.0.left/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1588184869941" />
+    <state width="1343" height="184" key="GridCell.Tab.0.right" timestamp="1588184869941">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1343" height="184" key="GridCell.Tab.0.right/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1588184869941" />
+    <state width="1343" height="230" key="GridCell.Tab.1.bottom" timestamp="1588184869937">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1343" height="230" key="GridCell.Tab.1.bottom/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1588184869937" />
+    <state width="1343" height="230" key="GridCell.Tab.1.center" timestamp="1588184869937">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1343" height="230" key="GridCell.Tab.1.center/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1588184869937" />
+    <state width="1343" height="230" key="GridCell.Tab.1.left" timestamp="1588184869937">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1343" height="230" key="GridCell.Tab.1.left/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1588184869937" />
+    <state width="1343" height="230" key="GridCell.Tab.1.right" timestamp="1588184869937">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1343" height="230" key="GridCell.Tab.1.right/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1588184869937" />
+    <state x="172" y="18" key="SettingsEditor" timestamp="1587076755463">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="172" y="18" key="SettingsEditor/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1587076755463" />
+    <state x="278" y="119" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1588183926499">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="278" y="119" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1588183926499" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
