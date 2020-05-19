@@ -56,20 +56,22 @@
                                      </audio>
                                 {% endif %}
                                 {% if notice.video_file %}
-                                    <div class="video-embed">
-                                        <iframe width="820" height="615"
-                                            src="{{notice.video_file.url}}" frameborder="0"
-                                            allowfullscreen="">
-                                        </iframe>
+                                <div class="video-embed">
+                                    <iframe width="820" height="615" src="{{notice.video_file.url}}"
+                                            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
                                 </div>
+
                                 {% endif %}
                                 <p>{{notice.text| safe}}</p>
                                 {% if notice.video %}
+
                                 <div class="video-embed">
-                                    <iframe width="820" height="615"
-                                        src="http://www.youtube.com/embed/{%get_youtube notice.video%}" frameborder="0"
-                                        allowfullscreen=""></iframe>
+                                    <iframe width="820" height="615" src="https://www.youtube.com/embed/{%get_youtube notice.video%}"
+                                            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
                                 </div>
+
                                 {% endif %}
 
 
