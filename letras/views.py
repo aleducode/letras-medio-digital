@@ -11,7 +11,6 @@ import json
 from django.urls import reverse_lazy
 from django.db.models import Q
 from django.http import HttpResponse
-from covid.utils import *
 # Models
 from letras.models import (
     Notice, Picture,
@@ -41,11 +40,7 @@ class IndexView(SweetifySuccessMixin, FormView):
             priority=2).order_by('-created')
         context['notices'] = Notice.objects.filter(
             priority=3).order_by('-created')
-        #Contagiados en tiempo real Coronavirus
-        context['total_casos'] = total_cases()
-        context['casos_activos'] = active_cases()
-        context['recuperados'] = total_recovered()
-        context['muertes'] = total_deaths()
+
 
         return context
 
