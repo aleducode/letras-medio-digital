@@ -11,7 +11,6 @@ import json
 from django.urls import reverse_lazy
 from django.db.models import Q
 from django.http import HttpResponse
-from covid.utils import *
 # Models
 from letras.models import (
     Notice, Picture,
@@ -102,6 +101,7 @@ class OpinionView(TemplateView):
 
         return context
 
+
 class ColumnDetailView(DetailView):
     """Column detail."""
 
@@ -109,6 +109,7 @@ class ColumnDetailView(DetailView):
     pk_url_kwarg = 'pk'
     queryset = Columns.objects.all()
     context_object_name = 'column'
+
 
 class ColumnView(DetailView):
     """Section opinion View."""
@@ -121,21 +122,23 @@ class ColumnView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['columns'] = Columns.objects.all()[0:3]
-        context['podcasts'] = Podcast.objects.filter(user=self.kwargs['user']).order_by('-created')[0:3]
+        context['podcasts'] = Podcast.objects.filter(
+            user=self.kwargs['user']).order_by('-created')[0:3]
         context['other_columnist'] = Profile.objects.filter(
-            role=2).exclude(user = self.kwargs['user'] ).order_by('-created')
+            role=2).exclude(user=self.kwargs['user']).order_by('-created')
         return context
 
 
 class PodcastView(DetailView):
-    template_name= 'podcast_detail.html'
+    template_name = 'podcast_detail.html'
     queryset = Podcast.objects.all()
     contex_object_name = 'podcast'
 
     def get_context_data(self, **kwargs):
         contex = super(PodcastView, self).get_context_data(**kwargs)
-        contex['more_podcasts'] = Podcast.objects.exclude( pk = self.kwargs['pk'])
+        contex['more_podcasts'] = Podcast.objects.exclude(pk=self.kwargs['pk'])
         return contex
+
 
 class PodcastList(ListView):
     paginate_by = 4
@@ -145,8 +148,6 @@ class PodcastList(ListView):
 
 def trigger_error(request):
     division_by_zero = 1 / 0
-
-
 
 
 def create_suscriptor(request):
