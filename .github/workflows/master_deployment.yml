@@ -1,0 +1,16 @@
+name: deployment
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deployment to MASTER
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            ./deploy.sh
+          host: ${{ secrets.HOST_MASTER }}
+          user: ubuntu
+          key: ${{ secrets.PRIVATE_KEY}}
