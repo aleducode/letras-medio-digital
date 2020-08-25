@@ -9,7 +9,7 @@
         width: 100%;
         max-width: 400px;
         height: auto;
-      }
+    }
 </style>
 {% endblock head_css %}
 <div id="content">
@@ -23,14 +23,15 @@
                     {% if top1_notice %}
                     <div class="item">
                         <a href="{% url 'publication' top1_notice.pk %}" class="item-photo">
-                            <img src="{{top1_notice.principal_picture}}" height="390" width="600" style="height: 390px; width: 600px " />
+                            <img src="{{top1_notice.principal_picture}}" height="390" width="600"
+                                style="height: 390px; width: 600px " />
                             <span class="item-content">
                                 <strong class="item-article-category" data-ot-css="color: #f3d826;"></strong>
                                 <strong class="item-article-title">{{top1_notice.title}}</strong>
                                 <span class="item-article-text">{{top1_notice.lead | truncatechars:150}}</span>
                                 <span class="item-meta">
                                     <!-- <span><i class="po po-head"></i>{{top1_notice.user}}</span> -->
-                                    <span ><i class="fa fa-calendar-o"></i>{{top1_notice.created|date:"d M"}}</span>
+                                    <span><i class="fa fa-calendar-o"></i>{{top1_notice.created|date:"d M"}}</span>
                                     <span><i class="fa fa-star"></i>{{top1_notice.section}}</span>
                                     <span><i class="fa fa-user"></i>{{top1_notice.user.username}}</span>
                                 </span>
@@ -42,11 +43,12 @@
                     {% if top2_notices %}
 
                     <div class="item item-small">
-                          
+
                         {%for notice in top2_notices|slice:":4" %}
 
                         <a href="{% url 'publication' notice.pk %}" class="item-photo">
-                            <img src="{{notice.principal_picture}}" alt="" height="195" width="300" style="height: 195px; width: 300px "  />
+                            <img src="{{notice.principal_picture}}" alt="" height="195" width="300"
+                                style="height: 195px; width: 300px " />
                             <span class="item-content">
                                 <strong class="item-article-title">{{notice.title}}</strong>
                                 <span class="item-meta">
@@ -92,9 +94,10 @@
                                                             class="fa fa-search"></a></span>
                                                 </div>
                                                 <a href="{% url 'publication' notice.pk %}">
-                                                    <img src="{{notice.principal_picture}}" height="146px" width="260px"  alt="" />
-                                                    </a>
-                                       
+                                                    <img src="{{notice.principal_picture}}" height="146px" width="260px"
+                                                        alt="" />
+                                                </a>
+
                                             </div>
                                             <div class="item-content">
                                                 <h3><a href="{% url 'publication' notice.pk %}">{{notice.title}}</a>
@@ -114,7 +117,8 @@
                                                 <p>{{notice.lead | truncatechars:200}}</p>
                                                 <div class="item-helper-a">
                                                     <a href="{% url 'publication' notice.pk %}"
-                                                        class="button-alt button-alt-frame"><i class="fa fa-search"></i>Ver
+                                                        class="button-alt button-alt-frame"><i
+                                                            class="fa fa-search"></i>Ver
                                                         mas</a>
 
                                                 </div>
@@ -134,92 +138,99 @@
                     </div>
                     <aside class="sidebar portus-sidebar-large">
                         <div class="widget">
+                            
+                            {% if banner_video %}
+                            <video src="{{banner_video.video.url}}" width="300px" height="300px" controls></video>
+                            {% endif %}
                             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                                 <!-- Indicators -->
+
                                 <ol class="carousel-indicators">
-                                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                  <li data-target="#myCarousel" data-slide-to="1"></li>
-                                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel" data-slide-to="2"></li>
                                 </ol>
-                            
+                               
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner">
-                                    {% for banner in side_banners  %}
                                     
                                     
-                                        
+                                    {% for banner in side_banners %}
+                                    
+                                    {% if not banner.is_video %}
                                     <div class="item {% if forloop.counter == 1 %}active{% endif %}">
                                         <img src="{{banner.images.url}}" alt="Los Angeles" style="width:100%;">
-                                      </div>
+                                    </div>
+                                    {% endif %}
+
                                     {% endfor %}
                                 </div>
-                            
+
                                 <!-- Left and right controls -->
                                 <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                                  <span class="glyphicon glyphicon-chevron-left"></span>
-                                  <span class="sr-only">Anteriór</span>
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                    <span class="sr-only">Anteriór</span>
                                 </a>
                                 <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                                  <span class="glyphicon glyphicon-chevron-right"></span>
-                                  <span class="sr-only">Siguiente</span>
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                    <span class="sr-only">Siguiente</span>
                                 </a>
-                              </div>
+                            </div>
                         </div>
 
                         <div class="widget">
-                                <h3>Trinos <a href="https://twitter.com/letrasmedio">@letrasmedio</a></h3>
+                            <h3>Trinos <a href="https://twitter.com/letrasmedio">@letrasmedio</a></h3>
                             <a class="twitter-timeline" data-tweet-limit="2"
-                                href="https://twitter.com/LetrasMedio?ref_src=twsrc%5Etfw"><h3>TweetsLetrasMedio</h3></a>
+                                href="https://twitter.com/LetrasMedio?ref_src=twsrc%5Etfw">
+                                <h3>TweetsLetrasMedio</h3>
+                            </a>
                             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                         </div>
                         <!-- BEGIN .widget -->
                         <div class="widget">
 
-                        <h3>Suscríbete a Letras</h3>
-                        <div class="widget-subscribe">
-                            <div>
-                                <p></p>
-                            </div>
-                            <div class="alert-message alert-green">
-                                <strong>Mantente actualizado </strong>
-                            </div>
+                            <h3>Suscríbete a Letras</h3>
+                            <div class="widget-subscribe">
+                                <div>
+                                    <p></p>
+                                </div>
+                                <div class="alert-message alert-green">
+                                    <strong>Mantente actualizado </strong>
+                                </div>
 
 
 
-                            <form action="{% url 'index' %}" method="POST"">
+                                <form action="{% url 'index' %}" method="POST"">
                                 {% csrf_token %}
-                                <label class="label-input">
+                                <label class=" label-input">
                                     <span>Nombre</span>
                                     {{form.name}}
-                                </label>
-                                <label class="label-input">
-                                    <span>Correo</span>
-                                    {{form.email}}
-                                    
-                                </label>
-                                <input type="submit" class="button" value="Enviar" />
-                            </form>
+                                    </label>
+                                    <label class="label-input">
+                                        <span>Correo</span>
+                                        {{form.email}}
+
+                                    </label>
+                                    <input type="submit" class="button" value="Enviar" />
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                </aside>
+                    </aside>
+                </div>
             </div>
+            <!-- ENd .portus-main-content-panel -->
         </div>
-        <!-- ENd .portus-main-content-panel -->
+
+        <!-- BEGIN .portus-main-content-panel -->
+
+
+        <!-- BEGIN .portus-main-content-panel -->
+
+
+
+        <!-- END .wrapper -->
     </div>
 
-    <!-- BEGIN .portus-main-content-panel -->
-
-
-    <!-- BEGIN .portus-main-content-panel -->
-
-
-
-    <!-- END .wrapper -->
-</div>
-
-<!-- BEGIN #content -->
+    <!-- BEGIN #content -->
 </div>
 {% endblock%}
-
-
-

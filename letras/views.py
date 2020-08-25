@@ -39,7 +39,16 @@ class IndexView(SweetifySuccessMixin, FormView):
         context['top1_notice'] = top_one.first() if top_one.exists() else None
         context['top2_notices'] = Notice.objects.filter(priority=2).order_by('-created')
         context['notices'] = Notice.objects.filter(priority=3).order_by('-created')
-        context['side_banners'] = Banner.objects.filter(position=Banner.SIDE)
+        files_banners = Banner.objects.filter(position=Banner.SIDE)
+        video = None
+        images = []
+        for file in files_banners:
+            if file.is_video:
+                video = file
+            else:
+                images.append(file)
+        context['side_banners'] = images
+        context['banner_video'] = video
         return context
 
     def form_valid(self, form):

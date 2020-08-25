@@ -92,12 +92,16 @@ class ImagesAdmin(admin.ModelAdmin):
 
 @admin.register(Banner)
 class BannerAdmin(admin.ModelAdmin):
-    list_display = ['position']
+    list_display = ['position', 'video', 'images']
     list_filter = ['position']
 
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request, obj=None):
+        """Ensure only one comopant data."""
+        return False
+
     list_display = ['title']
 
 

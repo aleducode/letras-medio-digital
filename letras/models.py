@@ -279,11 +279,21 @@ class Banner(models.Model):
         choices=BANNER_CHOICES,
         default=SIDE,
     )
-    images = models.ImageField(
-        upload_to='banners/', height_field=None, width_field=None, max_length=None)
+    images = models.ImageField(upload_to='banners/', blank=True, null=True)
+    video = models.FileField(upload_to='videos/', blank=True, null=True)
 
     def __str__(self):
         return self.position
+
+    class Meta:
+        verbose_name = "Banner publiciario"
+        verbose_name_plural = "Banners publicitarios"
+
+    @property
+    def is_video(self):
+        if self.video:
+            return True
+        return False
 
 
 class Company(models.Model):
@@ -295,3 +305,7 @@ class Company(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = "Compañía"
+        verbose_name_plural = "Datos de la compañía"
