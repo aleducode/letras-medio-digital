@@ -26,6 +26,7 @@ PRIORIDAD_CHOICES = (
 )
 
 
+
 def user_directory_path(instance, filename):
     """Route to storage user picture."""
     return 'user{0}/{1}'.format(instance.user.id, filename)
@@ -255,3 +256,35 @@ def change_notice(sender,instance, **kwargs):
         ult_notice = ult_prioritytwo.last()
         ult_notice.priority = 3
         ult_notice.save()
+
+
+class Banner(models.Model):
+
+    PRINCIPAL = 'Principal'
+    SIDE = 'Side'
+
+    BANNER_CHOICES = [
+        (PRINCIPAL, PRINCIPAL),
+        (SIDE, SIDE)
+
+    ]
+    position = models.CharField(
+        max_length=55,
+        choices=BANNER_CHOICES,
+        default=SIDE,
+    )
+    images = models.ImageField(upload_to='banners/',height_field=None, width_field=None, max_length=None)
+         
+    def __str__(self):
+        return self.position
+
+
+class Company(models.Model):
+
+    title = models.TextField()
+    phone_number = models.CharField(max_length=255)
+    address=models.CharField(max_length=30)
+    contact=models.EmailField()
+
+    def __str__(self):
+        return self.title

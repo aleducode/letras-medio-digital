@@ -15,7 +15,8 @@ from django.http import HttpResponse
 from letras.models import (
     Notice, Picture,
     Profile, Suscriptor,
-    Podcast, Columns
+    Podcast, Columns,
+    Banner,
 )
 from letras.forms import SuscriptorsForm
 # Utils
@@ -40,6 +41,9 @@ class IndexView(SweetifySuccessMixin, FormView):
             priority=2).order_by('-created')
         context['notices'] = Notice.objects.filter(
             priority=3).order_by('-created')
+        context['side_banners'] = Banner.objects.filter(position=Banner.SIDE)
+
+    
 
         return context
 

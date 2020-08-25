@@ -17,6 +17,8 @@ from letras.models import (
     Images,
     Podcast,
     Columns,
+    Banner,
+    Company
 )
 
 # Forms
@@ -87,8 +89,23 @@ class ImagesAdmin(admin.ModelAdmin):
 
     url.short_description = "url"
 
+@admin.register(Banner)
+class BannerAdmin(admin.ModelAdmin):
+
+    list_display = ['position']
+
+@admin.register(Company)
+class CompanyAdmin(admin.ModelAdmin):
+
+    list_display = ['title']
+
+
+
+
+
 
 admin.site.register(Podcast)
 admin.site.register(Section)
 admin.site.register(Suscriptor)
 admin.site.register(Profile)
+
