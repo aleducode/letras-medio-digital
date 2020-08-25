@@ -31,15 +31,10 @@ def get_getprincipal():
     if principals:
         return principals.last().images.url
     else:
-        return None   
-         
+        return None
+
 
 @register.simple_tag
 def get_getcompany():
     seccion = Company.objects.all().first()
     return seccion
-
-
-
-
-    

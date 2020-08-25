@@ -26,7 +26,6 @@ PRIORIDAD_CHOICES = (
 )
 
 
-
 def user_directory_path(instance, filename):
     """Route to storage user picture."""
     return 'user{0}/{1}'.format(instance.user.id, filename)
@@ -67,7 +66,7 @@ class Profile(models.Model):
     def save(self):
         super(Profile, self).save()
         picture = Image.open(self.picture)
-        picture = picture.resize((190,190), Image.ANTIALIAS)
+        picture = picture.resize((190, 190), Image.ANTIALIAS)
         picture.save(self.picture.path)
 
 
@@ -102,7 +101,6 @@ class Section(models.Model):
         verbose_name_plural = 'Secciones'
 
 
-
 class Notice(models.Model):
     """Notice model."""
 
@@ -110,7 +108,8 @@ class Notice(models.Model):
     lead = models.TextField('Lead Noticia', null=True, blank=True)
     text = RichTextField()
     video = models.URLField(max_length=200, blank=True)
-    video_file = models.FileField(upload_to = 'video_files/', null = True, blank= True)
+    video_file = models.FileField(
+        upload_to='video_files/', null=True, blank=True)
     podcast = models.FileField(upload_to='audios/', null=True, blank=True)
     user = models.ForeignKey(
         User,
@@ -118,8 +117,10 @@ class Notice(models.Model):
         null=True,
         blank=True
     )
-    section = models.ForeignKey(Section, on_delete=models.CASCADE, verbose_name = 'Seccion')
-    priority = models.PositiveIntegerField(choices=PRIORIDAD_CHOICES, verbose_name='Prioridad')
+    section = models.ForeignKey(
+        Section, on_delete=models.CASCADE, verbose_name='Seccion')
+    priority = models.PositiveIntegerField(
+        choices=PRIORIDAD_CHOICES, verbose_name='Prioridad')
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
@@ -209,28 +210,33 @@ class Suscriptor(models.Model):
 
 
 class Podcast(models.Model):
-    title = models.CharField(max_length=200, verbose_name = 'Titulo del podcast')
-    picture = models.FileField(upload_to = 'img_podcasts', default = 'img', verbose_name ='Imagen')
-    user = models.ForeignKey(User,on_delete=models.CASCADE, verbose_name = 'Usuario')
-    podcast = models.FileField(upload_to ='podcasts/', verbose_name = 'Audio Podcast')
-    description = RichTextField(verbose_name= 'Descripcion')
+    title = models.CharField(max_length=200, verbose_name='Titulo del podcast')
+    picture = models.FileField(
+        upload_to='img_podcasts', default='img', verbose_name='Imagen')
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name='Usuario')
+    podcast = models.FileField(
+        upload_to='podcasts/', verbose_name='Audio Podcast')
+    description = RichTextField(verbose_name='Descripcion')
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
 
+
 class Columns(models.Model):
     """Notice model."""
     title = models.TextField('Titulo Columna')
     text = RichTextField(verbose_name='Contenido Columna')
-    image = models.ImageField(upload_to = "img_columns", default = "img", verbose_name= 'Imagen')
+    image = models.ImageField(upload_to="img_columns",
+                              default="img", verbose_name='Imagen')
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         null=True,
         blank=True,
-        verbose_name = 'Usuario'
+        verbose_name='Usuario'
     )
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
@@ -239,16 +245,16 @@ class Columns(models.Model):
         verbose_name = "Columna"
         verbose_name_plural = "Columnas"
 
-@receiver(post_save, sender =Notice)
-def change_notice(sender,instance, **kwargs):
+
+@receiver(post_save, sender=Notice)
+def change_notice(sender, instance, **kwargs):
     priority = instance.priority
     ult_priority = Notice.objects.filter(priority=1)
     ult_prioritytwo = Notice.objects.filter(priority=2)
 
-
-    if  priority == 1:
+    if priority == 1:
         if ult_priority.count() > 1 and ult_priority:
-            N= ult_priority.last()
+            N = ult_priority.last()
             N.priority = 2
             N.save()
 
@@ -273,8 +279,9 @@ class Banner(models.Model):
         choices=BANNER_CHOICES,
         default=SIDE,
     )
-    images = models.ImageField(upload_to='banners/',height_field=None, width_field=None, max_length=None)
-         
+    images = models.ImageField(
+        upload_to='banners/', height_field=None, width_field=None, max_length=None)
+
     def __str__(self):
         return self.position
 
@@ -283,8 +290,8 @@ class Company(models.Model):
 
     title = models.TextField()
     phone_number = models.CharField(max_length=255)
-    address=models.CharField(max_length=30)
-    contact=models.EmailField()
+    address = models.CharField(max_length=30)
+    contact = models.EmailField()
 
     def __str__(self):
         return self.title
