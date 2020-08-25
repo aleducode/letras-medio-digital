@@ -17,6 +17,8 @@ from letras.models import (
     Images,
     Podcast,
     Columns,
+    Banner,
+    Company
 )
 
 # Forms
@@ -63,7 +65,7 @@ class NoticeResource(resources.ModelResource):
 
 @admin.register(Notice)
 class NoticeAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    resource_class= NoticeResource
+    resource_class = NoticeResource
     inlines = [PhotosAdminInline]
     list_display = ('title', 'section', 'priority')
     list_filter = ['section__name', 'priority']
@@ -86,6 +88,17 @@ class ImagesAdmin(admin.ModelAdmin):
         return obj
 
     url.short_description = "url"
+
+
+@admin.register(Banner)
+class BannerAdmin(admin.ModelAdmin):
+    list_display = ['position']
+    list_filter = ['position']
+
+
+@admin.register(Company)
+class CompanyAdmin(admin.ModelAdmin):
+    list_display = ['title']
 
 
 admin.site.register(Podcast)

@@ -1,5 +1,6 @@
 {% load static %}
 {% load sections %}
+{% get_getcompany as oelo %} 
 <!DOCTYPE HTML>
 <!-- BEGIN html -->
 <html lang="es">
@@ -98,7 +99,7 @@
                     <!-- BEGIN .header-logo -->
                     <div class="header-logo">
 
-                        <a href=""><img src="{% static "images/L1.png"%}" alt="" width="200" height="62"></a>
+                        <a href=""><img src="{% static "images/L1.png"%}" alt="" width="400" height="62"></a>
 
 
                         <!-- END .header-logo -->
@@ -119,7 +120,7 @@
 
                     <!-- BEGIN .header-pob -->
                     <div class="header-pob">
-                        <a href="#" target="_blank"><img src="{% static "images/L3.png" %}" alt="" /></a>
+                        <a href="#" target="_blank"><img src="{% get_getprincipal %}" alt="" /></a>
                         <!-- END .header-pob -->
                     </div>
 
@@ -210,23 +211,21 @@
                             <h3 style="width: 40%">Letras Medio Digital</h3>
                             <div class="text-center" style="width: 20%">
 
-                                <p class="text-justify">Letras Medio Digital es una empresa legalmente constituida que tiene como fin brindar
-                                    información noticiosa de carácter local, nacional e internacional haciendo uso de
-                                    medios digitales como la web y las redes sociales.</p>
+                                <p class="text-justify">{{oelo.title}}</p>
                                 <p></p>
                                 <div class="row center-block">
                                     <div class="short-icon-text">
                                         <i class="fa fa-phone " style="float: none"></i>
-                                        +57 3103776037
+                                        +57 {{oelo.phone_number}}
                                     </div>
                                 </div>
                                 <div class="short-icon-text">
-                                    <i class="fa fa-location-arrow" style="float: none"></i> Itagüí, Antioquia
+                                    <i class="fa fa-location-arrow" style="float: none"></i> {{oelo.address}}
 
                                 </div>
                                 <div class="short-icon-text">
                                     <i class="fa fa-envelope" style="float: none"></i>
-                                    contactenos@letramedio.co
+                                    {{oelo.contact}}
                                 </div>
                             </div>
                         </div>

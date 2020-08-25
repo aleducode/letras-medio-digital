@@ -15,7 +15,8 @@ from django.http import HttpResponse
 from letras.models import (
     Notice, Picture,
     Profile, Suscriptor,
-    Podcast, Columns
+    Podcast, Columns,
+    Banner,
 )
 from letras.forms import SuscriptorsForm
 # Utils
@@ -36,11 +37,9 @@ class IndexView(SweetifySuccessMixin, FormView):
         # Top notices
         top_one = Notice.objects.filter(priority=1)
         context['top1_notice'] = top_one.first() if top_one.exists() else None
-        context['top2_notices'] = Notice.objects.filter(
-            priority=2).order_by('-created')
-        context['notices'] = Notice.objects.filter(
-            priority=3).order_by('-created')
-
+        context['top2_notices'] = Notice.objects.filter(priority=2).order_by('-created')
+        context['notices'] = Notice.objects.filter(priority=3).order_by('-created')
+        context['side_banners'] = Banner.objects.filter(position=Banner.SIDE)
         return context
 
     def form_valid(self, form):
